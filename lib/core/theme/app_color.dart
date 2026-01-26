@@ -14,6 +14,7 @@ class AppColors {
   static const Color card = Color(0xFFF6F6F6);
   static const Color input = Color(0xFFF0F5FA);
   static const Color lightGray = Color(0xFFF4F5F7);
+  static const Color authBackGround = Color(0xFF121223);
 
   /// Text
   static const Color textPrimary = Color(0xFF181C2E);

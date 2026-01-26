@@ -1,70 +1,82 @@
-import 'package:delivery_app/core/theme/app_color.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'app_color.dart';
 
 class AppTextStyles {
   AppTextStyles._();
 
   static const String _fontFamily = 'Poppins';
 
-  /// Headings
-  static const TextStyle h1 = TextStyle(
+  // -------------------------
+  // Headings
+  // -------------------------
+
+  static final TextStyle font28TextPrimaryBold = TextStyle(
     fontFamily: _fontFamily,
-    fontSize: 28,
+    fontSize: 28.sp,
     fontWeight: FontWeight.w700,
     color: AppColors.textPrimary,
   );
 
-  static const TextStyle h2 = TextStyle(
+  static final TextStyle font22TextPrimarySemiBold = TextStyle(
     fontFamily: _fontFamily,
-    fontSize: 22,
+    fontSize: 22.sp,
     fontWeight: FontWeight.w600,
     color: AppColors.textPrimary,
   );
 
-  static const TextStyle h3 = TextStyle(
+  static final TextStyle font18TextMediumSemiBold = TextStyle(
     fontFamily: _fontFamily,
-    fontSize: 18,
+    fontSize: 18.sp,
     fontWeight: FontWeight.w600,
     color: AppColors.textMedium,
   );
 
-  /// Body
-  static const TextStyle bodyLarge = TextStyle(
+  // -------------------------
+  // Body
+  // -------------------------
+
+  static final TextStyle font16TextDarkRegular = TextStyle(
     fontFamily: _fontFamily,
-    fontSize: 16,
+    fontSize: 16.sp,
     fontWeight: FontWeight.w400,
     color: AppColors.textDark,
     height: 1.5,
   );
 
-  static const TextStyle bodyMedium = TextStyle(
+  static final TextStyle font14TextSecondaryRegular = TextStyle(
     fontFamily: _fontFamily,
-    fontSize: 14,
+    fontSize: 14.sp,
     fontWeight: FontWeight.w400,
     color: AppColors.textSecondary,
     height: 1.5,
   );
 
-  static const TextStyle bodySmall = TextStyle(
+  static final TextStyle font12TextHintRegular = TextStyle(
     fontFamily: _fontFamily,
-    fontSize: 12,
+    fontSize: 12.sp,
     fontWeight: FontWeight.w400,
     color: AppColors.textHint,
   );
 
-  /// Buttons
-  static const TextStyle button = TextStyle(
+  // -------------------------
+  // Buttons
+  // -------------------------
+
+  static final TextStyle font16WhiteSemiBold = TextStyle(
     fontFamily: _fontFamily,
-    fontSize: 16,
+    fontSize: 16.sp,
     fontWeight: FontWeight.w600,
     color: Colors.white,
   );
 
-  /// Caption / Helper
-  static const TextStyle caption = TextStyle(
+  // -------------------------
+  // Caption / Helper
+  // -------------------------
+
+  static final TextStyle font11TextHintMedium = TextStyle(
     fontFamily: _fontFamily,
-    fontSize: 11,
+    fontSize: 11.sp,
     fontWeight: FontWeight.w500,
     color: AppColors.textHint,
   );

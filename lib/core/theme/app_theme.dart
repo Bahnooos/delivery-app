@@ -25,25 +25,27 @@ class AppTheme {
       ),
 
       /// AppBar
-      appBarTheme: const AppBarTheme(
+      appBarTheme: AppBarTheme(
         backgroundColor: AppColors.surface,
         elevation: 0,
         centerTitle: true,
         foregroundColor: AppColors.textPrimary,
         systemOverlayStyle: SystemUiOverlayStyle.dark,
-        titleTextStyle: AppTextStyles.h3,
+        titleTextStyle: AppTextStyles.font18TextMediumSemiBold,
       ),
 
-      /// Text Theme
-      textTheme: const TextTheme(
-        displayLarge: AppTextStyles.h1,
-        displayMedium: AppTextStyles.h2,
-        displaySmall: AppTextStyles.h3,
-        bodyLarge: AppTextStyles.bodyLarge,
-        bodyMedium: AppTextStyles.bodyMedium,
-        bodySmall: AppTextStyles.bodySmall,
-        labelLarge: AppTextStyles.button,
-        labelSmall: AppTextStyles.caption,
+      /// Text Theme (Mapped to new naming)
+      textTheme: TextTheme(
+        displayLarge: AppTextStyles.font28TextPrimaryBold,
+        displayMedium: AppTextStyles.font22TextPrimarySemiBold,
+        displaySmall: AppTextStyles.font18TextMediumSemiBold,
+
+        bodyLarge: AppTextStyles.font16TextDarkRegular,
+        bodyMedium: AppTextStyles.font14TextSecondaryRegular,
+        bodySmall: AppTextStyles.font12TextHintRegular,
+
+        labelLarge: AppTextStyles.font16WhiteSemiBold,
+        labelSmall: AppTextStyles.font11TextHintMedium,
       ),
 
       /// Elevated Button
@@ -56,7 +58,7 @@ class AppTheme {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(14),
           ),
-          textStyle: AppTextStyles.button,
+          textStyle: AppTextStyles.font16WhiteSemiBold,
         ),
       ),
 
@@ -64,19 +66,18 @@ class AppTheme {
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
         fillColor: AppColors.input,
-        hintStyle: AppTextStyles.bodySmall,
-        contentPadding:
-            const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+        hintStyle: AppTextStyles.font12TextHintRegular,
+        contentPadding: const EdgeInsets.symmetric(
+          horizontal: 16,
+          vertical: 14,
+        ),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
           borderSide: BorderSide.none,
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: const BorderSide(
-            color: AppColors.primary,
-            width: 1.5,
-          ),
+          borderSide: const BorderSide(color: AppColors.primary, width: 1.5),
         ),
       ),
 
@@ -84,9 +85,7 @@ class AppTheme {
       cardTheme: CardThemeData(
         color: AppColors.card,
         elevation: 0,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       ),
 
       /// Divider
