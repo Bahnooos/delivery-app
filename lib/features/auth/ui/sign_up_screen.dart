@@ -1,43 +1,43 @@
-0import 'package:delivery_app/core/theme/app_color.dart';
 import 'package:delivery_app/features/auth/ui/widgets/auth_form_container.dart';
 import 'package:delivery_app/features/auth/ui/widgets/auth_header.dart';
-import 'package:delivery_app/features/auth/ui/widgets/do_not_have_account_sign_up.dart';
 import 'package:delivery_app/features/auth/ui/widgets/email_text_form_field.dart';
 import 'package:delivery_app/features/auth/ui/widgets/login_button.dart';
+import 'package:delivery_app/features/auth/ui/widgets/name_text_form_field.dart';
 import 'package:delivery_app/features/auth/ui/widgets/password_text_form_field.dart';
+import 'package:delivery_app/features/auth/ui/widgets/phone_text_form_field.dart';
+import 'package:delivery_app/features/auth/ui/widgets/re_type_password_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'widgets/remember_me_and_forget_password.dart';
+import '../../../core/theme/app_color.dart';
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+class SignUpScreen extends StatelessWidget {
+  const SignUpScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.authBackGround,
-      body: CustomScrollView(
-        slivers: [
-          SliverToBoxAdapter(
-            child: AuthHeader(
-              title: 'Log In',
-              subtitle: 'Please sign in to your existing account',
-              showBack: false,
-            ),
+      body: Column(
+        mainAxisAlignment: .center,
+        children: [
+          AuthHeader(
+            title: 'Sign Up',
+            subtitle: 'Create a new account',
+            showBack: true,
           ),
-          SliverToBoxAdapter(child: 24.verticalSpace),
-          SliverFillRemaining(
-            hasScrollBody: false,
+          24.verticalSpace,
+          Expanded(
             child: AuthFormContainer(
               child: Column(
                 spacing: 12.h,
                 children: [
+                  NameTextFormField(),
                   EmailTextFormField(),
+                  PhoneTextFormField(),
                   PasswordTextFormField(),
-                  RememberMeAndForgetPassword(),
+                  ReTypePasswordTextFormField(),
                   LoginButton(),
-                  DoNotHaveAccountSignUp(),
                 ],
               ),
             ),

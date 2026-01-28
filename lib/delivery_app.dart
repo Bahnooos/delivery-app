@@ -15,13 +15,15 @@ class DeliveryApp extends StatelessWidget {
       designSize: const Size(375, 812),
       minTextAdapt: true,
       splitScreenMode: true,
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: AppTheme.light,
-        themeMode: ThemeMode.system,
-        initialRoute: Routes.loginScreen,
-        onGenerateRoute: appRouter.generateRoute,
-      ),
+      builder: (context, child) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: AppTheme.light,
+          themeMode: ThemeMode.system,
+          initialRoute: Routes.loginScreen,
+          onGenerateRoute: appRouter.generateRoute,
+        );
+      },
     );
   }
 }

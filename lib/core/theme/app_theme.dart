@@ -42,7 +42,7 @@ class AppTheme {
 
         bodyLarge: AppTextStyles.font16TextDarkRegular,
         bodyMedium: AppTextStyles.font14TextSecondaryRegular,
-        bodySmall: AppTextStyles.font12TextHintRegular,
+        bodySmall: AppTextStyles.font13TextHintRegular,
 
         labelLarge: AppTextStyles.font16WhiteSemiBold,
         labelSmall: AppTextStyles.font11TextHintMedium,
@@ -66,7 +66,7 @@ class AppTheme {
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
         fillColor: AppColors.input,
-        hintStyle: AppTextStyles.font12TextHintRegular,
+        hintStyle: AppTextStyles.font13TextHintRegular,
         contentPadding: const EdgeInsets.symmetric(
           horizontal: 16,
           vertical: 14,

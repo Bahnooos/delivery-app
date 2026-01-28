@@ -52,11 +52,11 @@ class AppTextStyles {
     height: 1.5,
   );
 
-  static final TextStyle font12TextHintRegular = TextStyle(
+  static final TextStyle font13TextHintRegular = TextStyle(
     fontFamily: _fontFamily,
-    fontSize: 12.sp,
+    fontSize: 13.sp,
     fontWeight: FontWeight.w400,
-    color: AppColors.textHint,
+    color: AppColors.textDark,
   );
 
   // -------------------------
