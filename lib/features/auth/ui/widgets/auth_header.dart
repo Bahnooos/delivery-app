@@ -48,7 +48,7 @@ class AuthHeader extends StatelessWidget {
             ),
 
           Positioned.fill(
-            top: 100.h,
+            top: 110.h,
             left: 24.w,
             right: 24.w,
             child: Column(

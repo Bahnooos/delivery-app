@@ -3,7 +3,7 @@ import 'package:delivery_app/features/auth/ui/widgets/auth_form_container.dart';
 import 'package:delivery_app/features/auth/ui/widgets/auth_header.dart';
 import 'package:delivery_app/features/auth/ui/widgets/do_not_have_account_sign_up.dart';
 import 'package:delivery_app/features/auth/ui/widgets/email_text_form_field.dart';
-import 'package:delivery_app/features/auth/ui/widgets/login_button.dart';
+import 'package:delivery_app/features/auth/ui/widgets/custom_elevated_button.dart';
 import 'package:delivery_app/features/auth/ui/widgets/password_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -36,7 +36,10 @@ class LoginScreen extends StatelessWidget {
                   EmailTextFormField(),
                   PasswordTextFormField(),
                   RememberMeAndForgetPassword(),
-                  LoginButton(),
+                  CustomElevatedButton(
+                    onPressed: () {},
+                    text: 'Log In',
+                  ),
                   DoNotHaveAccountSignUp(),
                 ],
               ),
