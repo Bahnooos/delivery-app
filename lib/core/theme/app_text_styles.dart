@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'app_color.dart';
 
 class AppTextStyles {
@@ -56,7 +57,7 @@ class AppTextStyles {
     fontFamily: _fontFamily,
     fontSize: 13.sp,
     fontWeight: FontWeight.w400,
-    color: AppColors.textDark,
+    color: AppColors.textMedium,
   );
 
   // -------------------------

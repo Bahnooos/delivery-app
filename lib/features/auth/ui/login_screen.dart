@@ -26,7 +26,7 @@ class LoginScreen extends StatelessWidget {
               showBack: false,
             ),
           ),
-          SliverToBoxAdapter(child: 24.verticalSpace),
+          SliverToBoxAdapter(child: 40.verticalSpace),
           SliverFillRemaining(
             hasScrollBody: false,
             child: AuthFormContainer(

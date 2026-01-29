@@ -1,3 +1,4 @@
+import 'package:delivery_app/core/theme/app_text_styles.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/widgets/app_text_form_field.dart';
@@ -15,7 +16,7 @@ class _PhoneTextFormFieldState extends State<PhoneTextFormField> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Phone Number', style: TextStyle(fontSize: 13, color: Colors.grey)),
+        Text('Phone Number', style: AppTextStyles.font13TextHintRegular),
         SizedBox(height: 8),
         AppTextFormField(
           hintText: 'Enter Your Phone Number',

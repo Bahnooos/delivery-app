@@ -20,7 +20,7 @@ class AuthHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 150.h,
+      height: 180.h,
       child: Stack(
         children: [
           Positioned(
@@ -31,11 +31,11 @@ class AuthHeader extends StatelessWidget {
           ),
           if (showBack)
             Positioned(
-              top: 32,
+              top: 48.h,
               left: 16,
               child: CircleAvatar(
                 backgroundColor: Colors.white,
-                radius: 15,
+                radius: 20.r,
                 child: IconButton(
                   icon: SvgPicture.asset(
                     AppImages.arrowBack,
@@ -48,7 +48,7 @@ class AuthHeader extends StatelessWidget {
             ),
 
           Positioned.fill(
-            top: 80.h,
+            top: 100.h,
             left: 24.w,
             right: 24.w,
             child: Column(

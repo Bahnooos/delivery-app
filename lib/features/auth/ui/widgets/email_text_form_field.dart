@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../core/helpers/app_regex.dart';
 import '../../../../core/helpers/extensions.dart';
 import '../../../../core/widgets/app_text_form_field.dart';
 
@@ -24,7 +25,12 @@ class EmailTextFormField extends StatelessWidget {
             borderRadius: BorderRadius.circular(16.r),
             borderSide: BorderSide(style: BorderStyle.none),
           ),
-          validator: (value) {},
+          validator: (value) {
+            if (value == null || value.isEmpty || !AppRegex.isEmailValid(value)) {
+              return 'Please enter your valid email';
+            }
+          
+          },
         ),
       ],
     );

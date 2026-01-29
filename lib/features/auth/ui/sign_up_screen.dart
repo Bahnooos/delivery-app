@@ -37,6 +37,7 @@ class SignUpScreen extends StatelessWidget {
                   PhoneTextFormField(),
                   PasswordTextFormField(),
                   ReTypePasswordTextFormField(),
+                  12.verticalSpace,
                   LoginButton(),
                 ],
               ),
