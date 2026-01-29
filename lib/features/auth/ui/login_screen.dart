@@ -1,4 +1,4 @@
-0import 'package:delivery_app/core/theme/app_color.dart';
+import 'package:delivery_app/core/theme/app_color.dart';
 import 'package:delivery_app/features/auth/ui/widgets/auth_form_container.dart';
 import 'package:delivery_app/features/auth/ui/widgets/auth_header.dart';
 import 'package:delivery_app/features/auth/ui/widgets/do_not_have_account_sign_up.dart';
