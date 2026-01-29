@@ -20,7 +20,7 @@ class AuthHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 180.h,
+      height: 200.h,
       child: Stack(
         children: [
           Positioned(
@@ -32,7 +32,7 @@ class AuthHeader extends StatelessWidget {
           if (showBack)
             Positioned(
               top: 48.h,
-              left: 16,
+              left: 24.w,
               child: CircleAvatar(
                 backgroundColor: Colors.white,
                 radius: 20.r,
@@ -62,6 +62,7 @@ class AuthHeader extends StatelessWidget {
                 8.verticalSpace,
                 Text(
                   subtitle,
+                  textAlign: TextAlign.center,
                   style: context.font16TextDarkRegular?.copyWith(
                     color: AppColors.lightGray,
                   ),

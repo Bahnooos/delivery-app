@@ -1,6 +1,7 @@
 import 'package:delivery_app/features/auth/ui/login_screen.dart';
 import 'package:flutter/material.dart';
 
+import '../../features/auth/ui/forget_password_screen.dart';
 import '../../features/auth/ui/sign_up_screen.dart';
 import '../../features/auth/ui/verification_screen.dart';
 import '../../features/home/ui/home_screen.dart';
@@ -16,8 +17,13 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const HomeScreen());
       case Routes.loginScreen:
         return MaterialPageRoute(builder: (_) => const LoginScreen());
+      case Routes.signUpScreen:
+        return MaterialPageRoute(builder: (_) => const SignUpScreen());
       case Routes.verificationScreen:
         return MaterialPageRoute(builder: (_) => const VerificationScreen());
+      case Routes.forgetPasswordScreen:
+        return MaterialPageRoute(builder: (_) => const ForgetPasswordScreen());
+
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(
