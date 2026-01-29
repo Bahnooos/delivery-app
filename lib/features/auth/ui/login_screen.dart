@@ -17,35 +17,37 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.authBackGround,
-      body: CustomScrollView(
-        slivers: [
-          SliverToBoxAdapter(
-            child: AuthHeader(
-              title: 'Log In',
-              subtitle: 'Please sign in to your existing account',
-              showBack: false,
-            ),
-          ),
-          SliverToBoxAdapter(child: 40.verticalSpace),
-          SliverFillRemaining(
-            hasScrollBody: false,
-            child: AuthFormContainer(
-              child: Column(
-                spacing: 12.h,
-                children: [
-                  EmailTextFormField(),
-                  PasswordTextFormField(),
-                  RememberMeAndForgetPassword(),
-                  CustomElevatedButton(
-                    onPressed: () {},
-                    text: 'Log In',
-                  ),
-                  DoNotHaveAccountSignUp(),
-                ],
+      body: SafeArea(
+        child: CustomScrollView(
+          slivers: [
+            SliverToBoxAdapter(
+              child: AuthHeader(
+                title: 'Log In',
+                subtitle: 'Please sign in to your existing account',
+                showBack: false,
               ),
             ),
-          ),
-        ],
+            SliverToBoxAdapter(child: 40.verticalSpace),
+            SliverFillRemaining(
+              hasScrollBody: false,
+              child: AuthFormContainer(
+                child: Column(
+                  spacing: 12.h,
+                  children: [
+                    EmailTextFormField(),
+                    PasswordTextFormField(),
+                    RememberMeAndForgetPassword(),
+                    CustomElevatedButton(
+                      onPressed: () {},
+                      text: 'Log In',
+                    ),
+                    DoNotHaveAccountSignUp(),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -18,35 +18,37 @@ class SignUpScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.authBackGround,
-      body: Column(
-        mainAxisAlignment: .center,
-        children: [
-          AuthHeader(
-            title: 'Sign Up',
-            subtitle: 'Create a new account',
-            showBack: true,
-          ),
-          24.verticalSpace,
-          Expanded(
-            child: AuthFormContainer(
-              child: Column(
-                spacing: 12.h,
-                children: [
-                  NameTextFormField(),
-                  EmailTextFormField(),
-                  PhoneTextFormField(),
-                  PasswordTextFormField(),
-                  ReTypePasswordTextFormField(),
-                  12.verticalSpace,
-                  CustomElevatedButton(
-                    onPressed: () {},
-                    text: 'Sign Up',
-                  ),
-                ],
+      body: SafeArea(
+        child: Column(
+          mainAxisAlignment: .center,
+          children: [
+            AuthHeader(
+              title: 'Sign Up',
+              subtitle: 'Create a new account',
+              showBack: true,
+            ),
+            24.verticalSpace,
+            Expanded(
+              child: AuthFormContainer(
+                child: Column(
+                  spacing: 12.h,
+                  children: [
+                    NameTextFormField(),
+                    EmailTextFormField(),
+                    PhoneTextFormField(),
+                    PasswordTextFormField(),
+                    ReTypePasswordTextFormField(),
+                    12.verticalSpace,
+                    CustomElevatedButton(
+                      onPressed: () {},
+                      text: 'Sign Up',
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

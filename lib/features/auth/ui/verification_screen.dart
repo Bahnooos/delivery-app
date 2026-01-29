@@ -14,32 +14,34 @@ class VerificationScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.authBackGround,
-      body: CustomScrollView(
-        slivers: [
-          SliverToBoxAdapter(
-            child: AuthHeader(
-              title: 'Verification',
-              subtitle: 'We have sent a code to your email',
-              showBack: true,
-            ),
-          ),
-          SliverToBoxAdapter(
-            child: Text(
-              'example@gmail.com',
-              style: context.font16TextDarkRegular?.copyWith(
-                color: Colors.white,
+      body: SafeArea(
+        child: CustomScrollView(
+          slivers: [
+            SliverToBoxAdapter(
+              child: AuthHeader(
+                title: 'Verification',
+                subtitle: 'We have sent a code to your email',
+                showBack: true,
               ),
-              textAlign: TextAlign.center,
             ),
-          ),
-          SliverToBoxAdapter(child: 40.verticalSpace),
-          SliverFillRemaining(
-            hasScrollBody: false,
-            child: AuthFormContainer(
-              child: OTPVerification(),
+            SliverToBoxAdapter(
+              child: Text(
+                'example@gmail.com',
+                style: context.font16TextDarkRegular?.copyWith(
+                  color: Colors.white,
+                ),
+                textAlign: TextAlign.center,
+              ),
             ),
-          ),
-        ],
+            SliverToBoxAdapter(child: 40.verticalSpace),
+            SliverFillRemaining(
+              hasScrollBody: false,
+              child: AuthFormContainer(
+                child: OTPVerification(),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
