@@ -1,27 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-extension Navigation on BuildContext {
-  Future<dynamic> pushNamed(String routeName, {Object? argument}) {
-    return Navigator.of(this).pushNamed(routeName, arguments: argument);
-  }
-
-  Future<dynamic> pushReplacementNamed(String routeName, {Object? arguments}) {
-    return Navigator.of(
-      this,
-    ).pushReplacementNamed(routeName, arguments: arguments);
-  }
-
-  Future<dynamic> pushNamedAndRemoveUntil(
-    String routeNamed,
-    RoutePredicate predicate, {
-    Object? argument,
-  }) {
-    return Navigator.of(
-      this,
-    ).pushNamedAndRemoveUntil(routeNamed, predicate, arguments: argument);
-  }
-
-  void pop() => Navigator.pop(this);
+extension SpaceExtensions on num {
+  SizedBox get verticalSpace => SizedBox(height: h);
+  SizedBox get horizontalSpace => SizedBox(width: w);
 }
 
 extension ThemeContext on BuildContext {
@@ -29,12 +11,12 @@ extension ThemeContext on BuildContext {
   TextTheme get textTheme => theme.textTheme;
   ColorScheme get colorScheme => theme.colorScheme;
 
-  TextStyle? get font28TextPrimaryBold => textTheme.displayLarge;
-  TextStyle? get font22TextPrimarySemiBold => textTheme.displayMedium;
-  TextStyle? get font18TextMediumSemiBold => textTheme.displaySmall;
-  TextStyle? get font16TextDarkRegular => textTheme.bodyLarge;
-  TextStyle? get font14TextSecondaryRegular => textTheme.bodyMedium;
-  TextStyle? get font13TextHintRegular => textTheme.bodySmall;
-  TextStyle? get font16WhiteSemiBold => textTheme.labelLarge;
-  TextStyle? get font11TextHintMedium => textTheme.labelSmall;
+  TextStyle? get displayLarge_28 => textTheme.displayLarge;
+  TextStyle? get displayMedium_22 => textTheme.displayMedium;
+  TextStyle? get displaySmall_18 => textTheme.displaySmall;
+  TextStyle? get bodyLarge_16 => textTheme.bodyLarge;
+  TextStyle? get bodyMedium_14 => textTheme.bodyMedium;
+  TextStyle? get bodySmall_12 => textTheme.bodySmall;
+  TextStyle? get labelLarge_16 => textTheme.labelLarge;
+  TextStyle? get labelSmall_11 => textTheme.labelSmall;
 }
