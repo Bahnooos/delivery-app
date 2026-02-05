@@ -16,6 +16,8 @@ class AppColors {
   static const Color lighterGray = Color(0xFFF4F5F7);
   static const Color authBackGround = Color(0xFF121223);
   static const Color checkBoxBorderColor = Color(0xFFE3EBF2);
+  static const Color arrowBackAppBar = Color(0xFFECF0F4);
+  static const Color notificationDivider = Color(0xffF0F4F9);
 
   /// Text
   static const Color textPrimary = Color(0xFF181C2E);
