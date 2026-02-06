@@ -47,9 +47,7 @@ class ProfileHeader extends StatelessWidget {
             )
                 : null,
           ),
-
-          SizedBox(width: 16.w),
-
+         16.verticalSpace,
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

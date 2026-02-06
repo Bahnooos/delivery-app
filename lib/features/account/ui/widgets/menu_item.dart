@@ -31,15 +31,9 @@ class ProfileMenuItem extends StatelessWidget {
                 color: iconColor.withOpacity(0.1),
                 borderRadius: BorderRadius.circular(10.r),
               ),
-              child: Icon(
-                icon,
-                size: 20.sp,
-                color: iconColor,
-              ),
+              child: Icon(icon, size: 20.sp, color: iconColor),
             ),
-
-            SizedBox(width: 16.w),
-
+            16.verticalSpace,
             Expanded(
               child: Text(
                 title,
