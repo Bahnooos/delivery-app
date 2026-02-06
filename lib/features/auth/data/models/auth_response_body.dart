@@ -1,10 +1,10 @@
 
 import 'package:json_annotation/json_annotation.dart';
 
-part 'login_response_body.g.dart';
+part 'auth_response_body.g.dart';
 
 @JsonSerializable(createToJson: false)
-class LoginResponseBody {
+class AuthResponseBody {
   final String? id;
   final String? firstName;
   final String? lastName;
@@ -12,7 +12,7 @@ class LoginResponseBody {
   final String? accessToken;
   final String? refreshToken;
 
-  LoginResponseBody({
+  AuthResponseBody({
     this.id,
     this.firstName,
     this.lastName,
@@ -21,6 +21,6 @@ class LoginResponseBody {
     this.refreshToken,
   });
 
-  factory LoginResponseBody.fromJson(Map<String, dynamic> json) =>
-      _$LoginResponseBodyFromJson(json);
+  factory AuthResponseBody.fromJson(Map<String, dynamic> json) =>
+      _$AuthResponseBodyFromJson(json);
 }

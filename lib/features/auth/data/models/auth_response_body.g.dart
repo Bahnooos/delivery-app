@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'login_response_body.dart';
+part of 'auth_response_body.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-LoginResponseBody _$LoginResponseBodyFromJson(Map<String, dynamic> json) =>
-    LoginResponseBody(
+AuthResponseBody _$AuthResponseBodyFromJson(Map<String, dynamic> json) =>
+    AuthResponseBody(
       id: json['id'] as String?,
       firstName: json['firstName'] as String?,
       lastName: json['lastName'] as String?,
