@@ -21,6 +21,7 @@ This project follows **Clean Architecture** with a feature-based structure:
 lib/
 ├── core/                    # Shared utilities across features
 │   ├── di/                  # Dependency Injection (get_it)
+│   ├── error/               # Error handling & Exceptions
 │   ├── helpers/             # Extensions and helper functions
 │   ├── networking/          # API service, dio, retrofit
 │   ├── routing/             # App router and routes
@@ -36,6 +37,11 @@ lib/
     │       └── widgets/     # Feature-specific widgets
     │
     └── home/
+        ├── data/
+        ├── logic/
+        └── ui/
+    
+    └── notification/
         ├── data/
         ├── logic/
         └── ui/
@@ -338,7 +344,8 @@ SvgPicture.asset('assets/svgs/icon.svg')
 
 - ✅ **Auth Feature**: Login screen, Sign-up screen (UI only, no logic yet)
 - ✅ **Core Setup**: Routing, theme, networking foundation
-- ⏳ **Home Feature**: Shell created, not implemented
+- ✅ **Notification Feature**: Structure implemented (Data, Logic, UI)
+- ⏳ **Home Feature**: Shell created, partially implemented
 
 ### Active Development
 
@@ -365,7 +372,7 @@ SvgPicture.asset('assets/svgs/icon.svg')
 
 ---
 
-**Last Updated**: 2026-01-29  
+**Last Updated**: 2026-02-06  
 **Maintainer**: Development Team
 
 > Remember: This is a **living document**. Update it as the project evolves!

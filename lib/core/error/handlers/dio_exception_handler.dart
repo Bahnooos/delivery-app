@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:delivery_app/core/error/exception_handler.dart';
 
+import '../../helpers/app_assets.dart';
+
 class DioExceptionHandler implements ExceptionHandler {
   final bool isArabic = false;
 
