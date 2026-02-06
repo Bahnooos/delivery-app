@@ -11,10 +11,12 @@ class AppTextFormField extends StatelessWidget {
   final TextStyle? hintStyle;
   final String hintText;
   final bool? isObscureText;
+  final String? prefixText;
   final Widget? suffixIcon;
   final Color? backgroundColor;
   final TextEditingController? controller;
   final Function(String?) validator;
+  final TextInputType? keyboardType;
   const AppTextFormField({
     super.key,
     this.contentPadding,
@@ -24,17 +26,22 @@ class AppTextFormField extends StatelessWidget {
     this.hintStyle,
     required this.hintText,
     this.isObscureText,
+    this.prefixText,
     this.suffixIcon,
     this.backgroundColor,
     this.controller,
     required this.validator,
+    this.keyboardType,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller,
+      keyboardType: keyboardType,
+      onTapOutside: (event) => FocusScope.of(context).unfocus(),
       decoration: InputDecoration(
+        prefixText: prefixText,
         isDense: true,
         contentPadding:
             contentPadding ??

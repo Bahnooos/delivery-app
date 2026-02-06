@@ -1,11 +1,7 @@
 import 'package:delivery_app/features/auth/ui/widgets/auth_form_container.dart';
 import 'package:delivery_app/features/auth/ui/widgets/auth_header.dart';
-import 'package:delivery_app/features/auth/ui/widgets/email_text_form_field.dart';
 import 'package:delivery_app/features/auth/ui/widgets/custom_elevated_button.dart';
-import 'package:delivery_app/features/auth/ui/widgets/name_text_form_field.dart';
-import 'package:delivery_app/features/auth/ui/widgets/password_text_form_field.dart';
-import 'package:delivery_app/features/auth/ui/widgets/phone_text_form_field.dart';
-import 'package:delivery_app/features/auth/ui/widgets/re_type_password_text_form_field.dart';
+import 'package:delivery_app/features/auth/ui/widgets/sign_up_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -19,35 +15,28 @@ class SignUpScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.authBackGround,
       body: SafeArea(
-        child: Column(
-          mainAxisAlignment: .center,
-          children: [
-            AuthHeader(
-              title: 'Sign Up',
-              subtitle: 'Create a new account',
-              showBack: true,
-            ),
-            24.verticalSpace,
-            Expanded(
-              child: AuthFormContainer(
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: .center,
+            children: [
+              AuthHeader(
+                title: 'Sign Up',
+                subtitle: 'Create a new account',
+                showBack: true,
+              ),
+              24.verticalSpace,
+              AuthFormContainer(
                 child: Column(
                   spacing: 12.h,
                   children: [
-                    NameTextFormField(),
-                    EmailTextFormField(),
-                    PhoneTextFormField(),
-                    PasswordTextFormField(),
-                    ReTypePasswordTextFormField(),
+                    SignUpFormField(),
                     12.verticalSpace,
-                    CustomElevatedButton(
-                      onPressed: () {},
-                      text: 'Sign Up',
-                    ),
+                    CustomElevatedButton(onPressed: () {}, text: 'Sign Up'),
                   ],
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
