@@ -7,14 +7,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class SignUpFormField extends StatefulWidget {
-  const SignUpFormField({super.key});
+class SignUpForm extends StatefulWidget {
+  const SignUpForm({super.key});
 
   @override
-  State<SignUpFormField> createState() => _SignUpFormFieldState();
+  State<SignUpForm> createState() => _SignUpFormState();
 }
 
-class _SignUpFormFieldState extends State<SignUpFormField> {
+class _SignUpFormState extends State<SignUpForm> {
   bool isVisible = false;
   bool isPasswordObscureText = true;
   bool isPasswordConfirmationObscureText = true;
@@ -152,7 +152,7 @@ class _SignUpFormFieldState extends State<SignUpFormField> {
               if (value == null || value.isEmpty) {
                 return 'Please enter your phone number';
               }
-              if (!AppRegex.isEgyptianPhoneValid(value)) {
+              if (!AppRegex.isEgyptianPhoneValid('+2$value')) {
                 return 'Please enter a valid Egyptian phone number';
               }
             },
@@ -190,6 +190,7 @@ class _SignUpFormFieldState extends State<SignUpFormField> {
           Text('Re-type Password', style: context.font13TextHintRegular),
           8.verticalSpace,
           AppTextFormField(
+            controller: passwordConfirmationController,
             hintText: 'Re-type Your Password',
             isObscureText: !isVisible,
             enabledBorder: OutlineInputBorder(

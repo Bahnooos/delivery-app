@@ -1,8 +1,11 @@
+import 'package:delivery_app/features/auth/logic/sign_up_cubit/sign_up_cubit.dart';
 import 'package:delivery_app/features/auth/ui/widgets/auth_form_container.dart';
 import 'package:delivery_app/features/auth/ui/widgets/auth_header.dart';
 import 'package:delivery_app/features/auth/ui/widgets/custom_elevated_button.dart';
-import 'package:delivery_app/features/auth/ui/widgets/sign_up_form_field.dart';
+import 'package:delivery_app/features/auth/ui/widgets/sign_up_bloc_listener.dart';
+import 'package:delivery_app/features/auth/ui/widgets/sign_up_form.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../core/theme/app_color.dart';
@@ -29,9 +32,13 @@ class SignUpScreen extends StatelessWidget {
                 child: Column(
                   spacing: 12.h,
                   children: [
-                    SignUpFormField(),
+                    SignUpForm(),
                     12.verticalSpace,
-                    CustomElevatedButton(onPressed: () {}, text: 'Sign Up'),
+                    CustomElevatedButton(
+                      onPressed: () => validateThenDoSignUp(context),
+                      text: 'Sign Up',
+                    ),
+                    SignUpBlocListener(),
                   ],
                 ),
               ),
@@ -40,5 +47,11 @@ class SignUpScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void validateThenDoSignUp(BuildContext context) {
+    if (context.read<SignUpCubit>().formKey.currentState!.validate()) {
+      context.read<SignUpCubit>().emitSignUpStates();
+    }
   }
 }
