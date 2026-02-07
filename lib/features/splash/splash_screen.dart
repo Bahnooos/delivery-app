@@ -52,8 +52,8 @@ class _SplashScreenState extends State<SplashScreen>
             left: 0,
             child: SvgPicture.asset(
               AppImages.splashEllipseTop,
-              width: 177.w,
-              height: 177.h,
+              width: 157.w,
+              height: 157.h,
             ),
           ),
           Positioned(
@@ -61,8 +61,8 @@ class _SplashScreenState extends State<SplashScreen>
             right: 0,
             child: SvgPicture.asset(
               AppImages.splashEllipseBottom,
-              width: 292.w,
-              height: 295.h,
+              width: 262.w,
+              height: 265.h,
             ),
           ),
 
@@ -78,8 +78,8 @@ class _SplashScreenState extends State<SplashScreen>
               ),
               child: SvgPicture.asset(
                 AppImages.appLogo,
-                width: 121.w,
-                height: 59.h,
+                width: 142.w,
+                height: 79.h,
               ),
             ),
           ),
