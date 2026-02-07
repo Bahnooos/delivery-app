@@ -1,7 +1,9 @@
+import 'package:delivery_app/core/helpers/app_regex.dart';
+import 'package:delivery_app/core/helpers/extensions.dart';
+import 'package:delivery_app/core/widgets/app_text_form_field.dart';
 import 'package:delivery_app/features/auth/ui/widgets/auth_form_container.dart';
 import 'package:delivery_app/features/auth/ui/widgets/auth_header.dart';
 import 'package:delivery_app/features/auth/ui/widgets/custom_elevated_button.dart';
-import 'package:delivery_app/features/auth/ui/widgets/email_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -32,7 +34,26 @@ class ForgetPasswordScreen extends StatelessWidget {
                 child: Column(
                   spacing: 12.h,
                   children: [
-                    EmailTextFormField(),
+                    Text('Email', style: context.font13TextHintRegular),
+                    8.verticalSpace,
+                    AppTextFormField(
+                      hintText: 'example@gmail.com',
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(16.r),
+                        borderSide: BorderSide(style: BorderStyle.none),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(16.r),
+                        borderSide: BorderSide(style: BorderStyle.none),
+                      ),
+                      validator: (value) {
+                        if (value == null ||
+                            value.isEmpty ||
+                            !AppRegex.isEmailValid(value)) {
+                          return 'Please enter your valid email';
+                        }
+                      },
+                    ),
                     12.verticalSpace,
                     CustomElevatedButton(text: 'SEND CODE', onPressed: () {}),
                   ],

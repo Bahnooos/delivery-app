@@ -20,7 +20,7 @@ class DeliveryApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           theme: AppTheme.light,
           themeMode: ThemeMode.system,
-          initialRoute: Routes.notificationScreen,
+          initialRoute: Routes.splashScreen,
           onGenerateRoute: appRouter.generateRoute,
         );
       },
