@@ -9,21 +9,21 @@ class SharedPrefHelper {
   SharedPrefHelper._();
 
   /// remove all values and keys from shared preferences
-  static void clearAllData() async {
+  static Future<void> clearAllData() async {
     debugPrint('SharedPrefHelper : all data has been cleared');
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.clear();
   }
 
   /// Removes a value from SharedPreferences with given [key].
-  static void removeData({required String key}) async {
+  static Future<void> removeData({required String key}) async {
     debugPrint('SharedPrefHelper : data with key : $key has been removed');
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.remove(key);
   }
 
   /// Saves a [value] with a [key] in the SharedPreferences.
-  static void setData({required String key, required dynamic value}) async {
+  static Future<void> setData({required String key, required dynamic value}) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     debugPrint('the key is $key and the value is $value');
     switch (value.runtimeType) {
@@ -73,7 +73,7 @@ class SharedPrefHelper {
   }
 
   /// set secure A [value] with a [key]
-  static void setSecureData({required String key, required String value}) async {
+  static Future<void> setSecureData({required String key, required String value}) async {
     const flutterSecureStorage = FlutterSecureStorage();
    await flutterSecureStorage.write(key: key, value: value);
   }

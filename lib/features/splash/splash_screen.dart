@@ -1,7 +1,9 @@
 import 'package:delivery_app/core/helpers/extensions.dart';
 import 'package:delivery_app/core/routing/routes.dart';
 import 'package:delivery_app/core/theme/app_images.dart';
+import 'package:delivery_app/features/auth/logic/auth_cubit/auth_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -33,6 +35,9 @@ class _SplashScreenState extends State<SplashScreen>
     super.initState();
     animate();
     _startApp();
+    Future.microtask(() {
+  context.read<AuthCubit>().checkAuth();
+});
   }
 
   @override

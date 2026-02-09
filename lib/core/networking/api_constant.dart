@@ -3,4 +3,5 @@ class ApiConstant {
   static const String signUpEndpoint = '/Authentication/register';
   static const String loginEndpoint = '/Authentication/login';
   static const String verifyEndpoint = '/Authentication/verify';
+  static const String refreshEndpoint = '/Authentication/refresh';
 }
