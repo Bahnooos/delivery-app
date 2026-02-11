@@ -1,5 +1,6 @@
 import 'package:delivery_app/features/auth/ui/login_screen.dart';
 import 'package:delivery_app/features/notification/ui/notification_screen.dart';
+import 'package:delivery_app/features/onbording/ui/onbording_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../features/auth/ui/forget_password_screen.dart';
@@ -26,6 +27,8 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const ForgetPasswordScreen());
       case Routes.notificationScreen:
         return MaterialPageRoute(builder: (_) => const NotificationScreen());
+      case Routes.onbordingScreen:
+        return MaterialPageRoute(builder: (_) => const OnbordingScreen());
 
       default:
         return MaterialPageRoute(
