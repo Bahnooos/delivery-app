@@ -4,6 +4,7 @@ import 'package:delivery_app/features/auth/logic/sign_up_cubit/sign_up_cubit.dar
 import 'package:delivery_app/features/auth/ui/login_screen.dart';
 import 'package:delivery_app/features/notification/ui/notification_screen.dart';
 import 'package:delivery_app/features/splash/splash_screen.dart';
+import 'package:delivery_app/features/onbording/ui/onbording_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -43,6 +44,8 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const NotificationScreen());
       case Routes.splashScreen:
         return MaterialPageRoute(builder: (_) => const SplashScreen());
+      case Routes.onbordingScreen:
+        return MaterialPageRoute(builder: (_) => const OnbordingScreen());
 
       default:
         return MaterialPageRoute(

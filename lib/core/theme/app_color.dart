@@ -9,7 +9,7 @@ class AppColors {
   static const Color primaryLight = Color(0xFFFFD27C);
 
   /// Backgrounds
-  static const Color scaffold = Color(0xFFF7F8F9);
+  static const Color scaffold = Colors.white;
   static const Color surface = Color(0xFFFFFFFF);
   static const Color card = Color(0xFFF6F6F6);
   static const Color input = Color(0xFFF0F5FA);
