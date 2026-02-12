@@ -1,5 +1,5 @@
-import 'package:dio/dio.dart';
 import 'package:delivery_app/core/error/exception_handler.dart';
+import 'package:dio/dio.dart';
 
 import '../../helpers/app_assets.dart';
 
