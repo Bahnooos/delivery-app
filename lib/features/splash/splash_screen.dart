@@ -20,7 +20,7 @@ class _SplashScreenState extends State<SplashScreen>
   Future<void> _startApp() async {
     await Future.delayed(const Duration(seconds: 3));
 
-    context.pushReplacementNamed(Routes.loginScreen);
+    context.pushReplacementNamed(Routes.onbordingScreen);
   }
 
   Future<void> animate() async {
