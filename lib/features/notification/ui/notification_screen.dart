@@ -18,6 +18,7 @@ class NotificationScreen extends StatelessWidget {
         body: SafeArea(
           child: CustomScrollView(
             slivers: [
+              
               SliverToBoxAdapter(child: 24.verticalSpace),
               SliverPadding(
                 padding: EdgeInsets.symmetric(horizontal: 28.w),
