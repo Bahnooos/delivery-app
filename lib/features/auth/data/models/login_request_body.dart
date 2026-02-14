@@ -2,7 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'login_request_body.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(createFactory: false)
 class LoginRequestBody {
   final String email;
   final String password;
