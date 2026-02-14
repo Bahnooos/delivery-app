@@ -32,7 +32,7 @@ class LoginCubit extends Cubit<LoginState> {
           accessToken: data.accessToken ?? '',
           refreshToken: data.refreshToken ?? '',
         );
-        emit(LoginSuccess(authResponseBody: data));
+        emit(LoginSuccess(loginResponse: data));
       },
       failure: (error) => emit(LoginError(error: error)),
     );

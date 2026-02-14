@@ -1,4 +1,4 @@
-import 'package:delivery_app/features/auth/data/models/auth_response_body.dart';
+import 'package:delivery_app/features/auth/data/models/login_response.dart';
 import 'package:delivery_app/features/auth/data/models/sign_up_request_body.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
