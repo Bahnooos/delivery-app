@@ -5,6 +5,8 @@ import 'package:delivery_app/features/auth/data/models/login_response.dart';
 import 'package:delivery_app/features/auth/data/models/login_request_body.dart';
 import 'package:delivery_app/features/auth/data/models/sign_up_request_body.dart';
 import 'package:delivery_app/features/auth/data/models/sign_up_response.dart';
+import 'package:delivery_app/features/auth/data/models/verify_email_request_body.dart';
+import 'package:delivery_app/features/auth/data/models/verify_email_response.dart';
 
 class AuthRepo {
   final AuthApiService authApiService;
@@ -21,6 +23,7 @@ class AuthRepo {
       return ApiResult.failure(ExceptionManager.getMessage(error as Exception));
     }
   }
+
   Future<ApiResult<LoginResponse>> login({
     required LoginRequestBody loginRequestBody,
   }) async {
@@ -31,5 +34,17 @@ class AuthRepo {
       return ApiResult.failure(ExceptionManager.getMessage(error as Exception));
     }
   }
+
+  Future<ApiResult<VerifyEmailResponse>> verify({
+    required VerifyEmailRequestBody verifyEmailRequestBody,
+  }) async {
+    try {
+      final response = await authApiService.verifyEmail(verifyEmailRequestBody);
+      return ApiResult.success(response);
+    } catch (e) {
+      return ApiResult.failure(ExceptionManager.getMessage(e as Exception));
+    }
+      
+    
+  }
 }
- 

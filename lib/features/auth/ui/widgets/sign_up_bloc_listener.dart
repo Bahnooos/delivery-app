@@ -12,7 +12,7 @@ class SignUpBlocListener extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocListener<SignUpCubit, SignUpState>(
-      listenWhen: (current, previous) =>
+      listenWhen: (previous, current) =>
           current is SignUpLoading ||
           current is SignUpSuccess ||
           current is SignUpError,
@@ -26,14 +26,17 @@ class SignUpBlocListener extends StatelessWidget {
                 child: CircularProgressIndicator(color: AppColors.primary),
               ),
             );
+            break;
 
           case SignUpSuccess():
             context.pop();
             showSuccessDialog(context);
+            final email = context.read<SignUpCubit>().emailController.text;
+            context.pushNamed(Routes.verificationScreen, argument: email);
           case SignUpError(error: final error):
             setupErrorState(context, error);
 
-         
+            break;
         }
       },
       child: SizedBox.shrink(),
@@ -61,7 +64,7 @@ class SignUpBlocListener extends StatelessWidget {
                 disabledForegroundColor: Colors.grey.withOpacity(0.38),
               ),
               onPressed: () {
-                context.pushNamed(Routes.loginScreen);
+                context.pop();
               },
               child: const Text('Continue'),
             ),

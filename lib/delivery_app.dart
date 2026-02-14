@@ -17,10 +17,13 @@ class DeliveryApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocListener<AuthCubit, AuthState>(
       listener: (context, state) {
-        if (state is AuthUnauthenticated) {
-          context.pushNamedAndRemoveUntil(Routes.loginScreen, (_) => false);
-        } else if (state is AuthAuthenticated) {
+        if (state is AuthAuthenticated) {
           context.pushNamedAndRemoveUntil(Routes.homeScreen, (_) => false);
+        }
+
+        if (state is AuthUnauthenticated &&
+            ModalRoute.of(context)?.settings.name == Routes.homeScreen) {
+          context.pushNamedAndRemoveUntil(Routes.loginScreen, (_) => false);
         }
       },
       child: ScreenUtilInit(

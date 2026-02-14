@@ -1,6 +1,7 @@
 import 'package:delivery_app/core/di/dependency_injection.dart';
 import 'package:delivery_app/features/auth/logic/login_cubit/login_cubit.dart';
 import 'package:delivery_app/features/auth/logic/sign_up_cubit/sign_up_cubit.dart';
+import 'package:delivery_app/features/auth/logic/verify_cubit/verification_cubit.dart';
 import 'package:delivery_app/features/auth/ui/login_screen.dart';
 import 'package:delivery_app/features/notification/ui/notification_screen.dart';
 import 'package:delivery_app/features/splash/splash_screen.dart';
@@ -37,7 +38,13 @@ class AppRouter {
           ),
         );
       case Routes.verificationScreen:
-        return MaterialPageRoute(builder: (_) => const VerificationScreen());
+      final email = args as String?;
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => getIt<VerificationCubit>(),
+            child: VerificationScreen(email: email),
+          ),
+        );
       case Routes.forgetPasswordScreen:
         return MaterialPageRoute(builder: (_) => const ForgetPasswordScreen());
       case Routes.notificationScreen:

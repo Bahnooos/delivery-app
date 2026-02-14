@@ -1,13 +1,16 @@
 import 'package:delivery_app/core/theme/app_text_styles.dart';
+import 'package:delivery_app/features/auth/logic/verify_cubit/verification_cubit.dart';
 import 'package:delivery_app/features/auth/ui/widgets/custom_elevated_button.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pinput/pinput.dart';
 
 class OTPVerification extends StatefulWidget {
-  const OTPVerification({super.key});
+  const OTPVerification({super.key, required this.email});
+  final String? email;
 
   @override
   State<OTPVerification> createState() => _OTPVerificationState();
@@ -79,17 +82,25 @@ class _OTPVerificationState extends State<OTPVerification> {
               // in this example we are using the SmartAuth
               controller: pinController,
               focusNode: focusNode,
-              separatorBuilder: (index) => 31.horizontalSpace ,
+              length: 6,
+              separatorBuilder: (index) => 31.horizontalSpace,
               validator: (value) {
-                return value == '2222' ? null : 'Pin is incorrect';
+                if (value == null || value.isEmpty) {
+                  return 'Pin is required';
+                }
+                if (value.length < 6) {
+                  return 'Pin must be 6 digits';
+                }
+                return null;
               },
               hapticFeedbackType: HapticFeedbackType.lightImpact,
               onCompleted: (pin) {
-                debugPrint('onCompleted: $pin');
+                context.read<VerificationCubit>().emitVerificationStates(
+                  email: widget.email,
+                  otp: pin,
+                );
               },
-              onChanged: (value) {
-                debugPrint('onChanged: $value');
-              },
+              onChanged: (value) {},
               cursor: Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
@@ -124,6 +135,10 @@ class _OTPVerificationState extends State<OTPVerification> {
             onPressed: () {
               focusNode.unfocus();
               formKey.currentState!.validate();
+              context.read<VerificationCubit>().emitVerificationStates(
+                email: widget.email,
+                otp: pinController.text,
+              );
             },
             text: 'Validate',
           ),
