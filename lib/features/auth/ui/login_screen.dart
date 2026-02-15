@@ -1,3 +1,4 @@
+import 'package:delivery_app/core/helpers/extensions.dart';
 import 'package:delivery_app/core/theme/app_color.dart';
 import 'package:delivery_app/features/auth/logic/login_cubit/login_cubit.dart';
 import 'package:delivery_app/features/auth/ui/widgets/auth_form_container.dart';
@@ -6,6 +7,7 @@ import 'package:delivery_app/features/auth/ui/widgets/custom_elevated_button.dar
 import 'package:delivery_app/features/auth/ui/widgets/do_not_have_account_sign_up.dart';
 import 'package:delivery_app/features/auth/ui/widgets/login_bloc_listener.dart';
 import 'package:delivery_app/features/auth/ui/widgets/login_form.dart';
+import 'package:delivery_app/features/auth/ui/widgets/login_with_facebook_and_google.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -41,6 +43,9 @@ class LoginScreen extends StatelessWidget {
                     CustomElevatedButton(onPressed: () => validateThenDoLogin(context), text: 'Log In'),
                     DoNotHaveAccountSignUp(),
                     LoginBlocListener(),
+                    Text('OR', style: context.font16TextDarkRegular),
+                    LoginWithFacebookAndGoogle(),
+
                   ],
                 ),
               ),
