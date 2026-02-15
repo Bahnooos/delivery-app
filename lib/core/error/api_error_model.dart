@@ -7,16 +7,17 @@ class ApiErrorModel {
   final String? type;
   final String? title;
   final int? status;
-  @JsonKey(name: 'detail')
-  final String? error;
+  final String? detail;
   final String? instance;
+  final Map<String, List<String>>? errors;
   final String? traceId;
 
   ApiErrorModel({
     this.type,
     this.title,
     this.status,
-    this.error,
+    this.errors,
+    this.detail,
     this.instance,
     this.traceId,
   });
@@ -25,6 +26,6 @@ class ApiErrorModel {
       _$ApiErrorModelFromJson(json);
 
   String getAllErrorsMessages() {
-    return error ?? '';
+    return errors?.values.first.first ??'';
   }
 }

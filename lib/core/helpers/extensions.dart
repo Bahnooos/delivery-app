@@ -1,3 +1,4 @@
+import 'package:delivery_app/core/error/api_error_model.dart';
 import 'package:flutter/material.dart';
 
 extension Navigation on BuildContext {
@@ -37,4 +38,11 @@ extension ThemeContext on BuildContext {
   TextStyle? get font13TextHintRegular => textTheme.bodySmall;
   TextStyle? get font16WhiteSemiBold => textTheme.labelLarge;
   TextStyle? get font11TextHintMedium => textTheme.labelSmall;
+}
+
+extension ErrorResponseExtension on ApiErrorModel {
+  String? get firstErrorMessage {
+    if (errors!.isEmpty || errors == null) return detail;
+    return errors?.values.first.first;
+  }
 }

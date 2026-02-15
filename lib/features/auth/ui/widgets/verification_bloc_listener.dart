@@ -21,13 +21,14 @@ class VerificationBlocListener extends StatelessWidget {
                 child: CircularProgressIndicator(color: AppColors.primary),
               ),
             );
-          case VerificationSuccessState(data: final data):
+          case VerificationSuccessState():
             ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text(' $data'), backgroundColor: Colors.green),
+              SnackBar(content: Text('Verification successful'), backgroundColor: Colors.green),
             );
             context.pushNamed(Routes.notificationScreen);
             break;
           case VerificationErrorState(message: final errorMessage):
+            context.pop();
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 content: Text(errorMessage),

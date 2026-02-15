@@ -83,7 +83,7 @@ class _OTPVerificationState extends State<OTPVerification> {
               controller: pinController,
               focusNode: focusNode,
               length: 6,
-              separatorBuilder: (index) => 31.horizontalSpace,
+              separatorBuilder: (index) => 16.horizontalSpace,
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return 'Pin is required';
