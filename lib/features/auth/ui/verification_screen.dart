@@ -2,13 +2,15 @@ import 'package:delivery_app/core/helpers/extensions.dart';
 import 'package:delivery_app/features/auth/ui/widgets/auth_form_container.dart';
 import 'package:delivery_app/features/auth/ui/widgets/auth_header.dart';
 import 'package:delivery_app/features/auth/ui/widgets/o_t_p_verification.dart';
+import 'package:delivery_app/features/auth/ui/widgets/verification_bloc_listener.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../core/theme/app_color.dart';
 
 class VerificationScreen extends StatelessWidget {
-  const VerificationScreen({super.key});
+  const VerificationScreen({super.key, required this.email});
+  final String? email;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +28,7 @@ class VerificationScreen extends StatelessWidget {
             ),
             SliverToBoxAdapter(
               child: Text(
-                'example@gmail.com',
+                email ?? 'example@gmail.com',
                 style: context.font16TextDarkRegular?.copyWith(
                   color: Colors.white,
                 ),
@@ -36,10 +38,9 @@ class VerificationScreen extends StatelessWidget {
             SliverToBoxAdapter(child: 40.verticalSpace),
             SliverFillRemaining(
               hasScrollBody: false,
-              child: AuthFormContainer(
-                child: OTPVerification(),
-              ),
+              child: AuthFormContainer(child: OTPVerification(email: email,)),
             ),
+            SliverToBoxAdapter(child: const VerificationBlocListener()),
           ],
         ),
       ),

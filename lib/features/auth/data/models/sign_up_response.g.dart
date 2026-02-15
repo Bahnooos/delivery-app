@@ -1,10 +1,10 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'login_request_body.dart';
+part of 'sign_up_response.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-Map<String, dynamic> _$LoginRequestBodyToJson(LoginRequestBody instance) =>
-    <String, dynamic>{'email': instance.email, 'password': instance.password};
+SignUpResponse _$SignUpResponseFromJson(Map<String, dynamic> json) =>
+    SignUpResponse(message: json['message'] as String);

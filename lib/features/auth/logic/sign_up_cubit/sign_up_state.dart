@@ -1,5 +1,4 @@
-
-import 'package:delivery_app/features/auth/data/models/auth_response_body.dart';
+import 'package:delivery_app/features/auth/data/models/sign_up_response.dart';
 
 sealed class SignUpState {}
 
@@ -8,8 +7,8 @@ class SignUpInitial extends SignUpState {}
 class SignUpLoading extends SignUpState {}
 
 class SignUpSuccess extends SignUpState {
-  final AuthResponseBody authResponseBody;
-  SignUpSuccess({required this.authResponseBody});
+  final SignUpResponse signUpResponse;
+  SignUpSuccess({required this.signUpResponse});
 }
 
 class SignUpError extends SignUpState {

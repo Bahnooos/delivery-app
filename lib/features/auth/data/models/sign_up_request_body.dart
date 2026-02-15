@@ -3,7 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'sign_up_request_body.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(createFactory: false)
 class SignUpRequestBody {
   final String firstName;
   final String lastName;

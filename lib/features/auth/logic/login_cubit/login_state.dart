@@ -1,5 +1,5 @@
 
-import 'package:delivery_app/features/auth/data/models/auth_response_body.dart';
+import 'package:delivery_app/features/auth/data/models/login_response.dart';
 
 sealed class LoginState {}
 
@@ -8,8 +8,8 @@ class LoginInitial extends LoginState {}
 class LoginLoading extends LoginState {}
 
 class LoginSuccess extends LoginState {
-  final AuthResponseBody authResponseBody;
-  LoginSuccess({required this.authResponseBody});
+  final LoginResponse loginResponse;
+  LoginSuccess({required this.loginResponse});
 }
 
 class LoginError extends LoginState {
