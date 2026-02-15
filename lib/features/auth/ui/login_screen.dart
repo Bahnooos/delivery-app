@@ -36,16 +36,23 @@ class LoginScreen extends StatelessWidget {
               hasScrollBody: false,
               child: AuthFormContainer(
                 child: Column(
-                  spacing: 12.h,
                   children: [
                     LoginForm(),
+                    12.verticalSpace,
                     RememberMeAndForgetPassword(),
-                    CustomElevatedButton(onPressed: () => validateThenDoLogin(context), text: 'Log In'),
+                    12.verticalSpace,
+                    CustomElevatedButton(
+                      onPressed: () => validateThenDoLogin(context),
+                      text: 'Log In',
+                    ),
+                    12.verticalSpace,
                     DoNotHaveAccountSignUp(),
+                    12.verticalSpace,
                     LoginBlocListener(),
+                    12.verticalSpace,
                     Text('OR', style: context.font16TextDarkRegular),
+                    4.verticalSpace,
                     LoginWithFacebookAndGoogle(),
-
                   ],
                 ),
               ),
@@ -54,9 +61,9 @@ class LoginScreen extends StatelessWidget {
         ),
       ),
     );
-    
   }
-  void validateThenDoLogin(BuildContext context){
+
+  void validateThenDoLogin(BuildContext context) {
     if (context.read<LoginCubit>().formKey.currentState!.validate()) {
       context.read<LoginCubit>().emitLoginStates();
     }
