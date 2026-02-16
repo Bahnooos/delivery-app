@@ -1,3 +1,5 @@
+import 'package:delivery_app/features/auth/data/models/facebook_login_request_body.dart';
+import 'package:delivery_app/features/auth/data/models/google_login_request_body.dart';
 import 'package:delivery_app/features/auth/data/models/login_response.dart';
 import 'package:delivery_app/features/auth/data/models/sign_up_request_body.dart';
 import 'package:delivery_app/features/auth/data/models/sign_up_response.dart';
@@ -26,6 +28,14 @@ abstract class AuthApiService {
   @POST(ApiConstant.verifyEndpoint)
   Future<VerifyEmailResponse> verifyEmail(
     @Body() VerifyEmailRequestBody verifyEmailRequestBody,
+  );
+  @POST(ApiConstant.facebookEndpoint)
+  Future<LoginResponse> facebookLogin(
+    @Body() FacebookLoginRequestBody facebookLoginRequestBody,
+  );
+  @POST(ApiConstant.googleEndpoint)
+  Future<LoginResponse> googleLogin(
+    @Body() GoogleLoginRequestBody googleLoginRequestBody,
   );
 
 }

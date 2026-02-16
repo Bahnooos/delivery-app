@@ -8,4 +8,6 @@ class AppImages {
   static const String onbording_2 = 'assets/svgs/onbording_2.svg';
   static const String onbording_3 = 'assets/svgs/onbording_3.svg';
   static const String onbording_4 = 'assets/svgs/onbording_4.svg';
+  static const String facebookLogo = 'assets/svgs/facebook_logo.svg';
+  static const String googleLogo = 'assets/svgs/google_logo.svg';
 }
