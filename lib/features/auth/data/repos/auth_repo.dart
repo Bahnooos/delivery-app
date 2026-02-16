@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:delivery_app/core/error/exception_manager.dart';
 import 'package:delivery_app/core/networking/api_result.dart';
 import 'package:delivery_app/features/auth/data/apis/auth_api_service.dart';
@@ -16,7 +18,36 @@ class AuthRepo {
   final AuthApiService authApiService;
   final GoogleSignIn _googleSignIn = GoogleSignIn.instance;
   final FacebookAuth _facebookAuth = FacebookAuth.instance;
+
   AuthRepo({required this.authApiService});
+  Future<void> initializeGoogleSignIn() async {
+    try {
+      log("===== STARTING GOOGLE SIGN-IN INITIALIZATION =====");
+      log(
+        "serverClientId: 1052875170088-d7agsku7ldc2btkl1qeuauk9lflrtong.apps.googleusercontent.com",
+      );
+
+      // Try to sign out first to reset state
+      try {
+        await _googleSignIn.signOut();
+        log("Signed out previous session");
+      } catch (e) {
+        log("No previous session to sign out");
+      }
+
+      await _googleSignIn.initialize(
+        serverClientId:
+            '1052875170088-d7agsku7ldc2btkl1qeuauk9lflrtong.apps.googleusercontent.com',
+      );
+
+      log("===== GOOGLE SIGN-IN INITIALIZED SUCCESSFULLY =====");
+    } catch (e) {
+      log("===== GOOGLE SIGN-IN INITIALIZATION FAILED =====");
+      log("Error type: ${e.runtimeType}");
+      log("Error message: $e");
+      rethrow;
+    }
+  }
 
   Future<ApiResult<SignUpResponse>> signUp({
     required SignUpRequestBody signUpRequestBody,
@@ -77,14 +108,30 @@ class AuthRepo {
 
   Future<ApiResult<LoginResponse>> googleLogin() async {
     try {
-      final googleUser = await _googleSignIn.authenticate();
-      if (googleUser.authentication.idToken == null) {
-        return ApiResult.failure("Invalid Google token");
-      }
-      final response = await authApiService.googleLogin(
-        GoogleLoginRequestBody(idToken: googleUser.authentication.idToken!),
+      await _googleSignIn.initialize(
+        serverClientId:
+            '1052875170088-d7agsku7ldc2btkl1qeuauk9lflrtong.apps.googleusercontent.com',
       );
+
+      final GoogleSignInAccount googleUser = await _googleSignIn.authenticate();
+
+      final googleAuth = googleUser.authentication;
+      if (googleAuth.idToken == null) {
+        return ApiResult.failure("Failed to get Google authentication token");
+      }
+
+      final response = await authApiService.googleLogin(
+        GoogleLoginRequestBody(idToken: googleAuth.idToken!),
+      );
+
       return ApiResult.success(response);
+    } on GoogleSignInException catch (e) {
+      if (e.code == GoogleSignInExceptionCode.canceled) {
+        return ApiResult.failure("Google Sign-In was cancelled");
+      }
+      return ApiResult.failure(
+        "Google Sign-In failed: ${e.code} - Check your configuration",
+      );
     } catch (e) {
       return ApiResult.failure(
         ExceptionManager.getMessage(
