@@ -13,7 +13,9 @@ class LoginWithFacebookAndGoogle extends StatelessWidget {
       spacing: 24.w,
       children: [
         IconButton(
-          onPressed: () {},
+          onPressed: () {
+            
+          },
           icon: SvgPicture.asset(
             AppImages.facebookLogo,
             width: 62.w,
