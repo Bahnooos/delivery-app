@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:delivery_app/core/error/exception_manager.dart';
 import 'package:delivery_app/core/networking/api_result.dart';
@@ -20,34 +19,7 @@ class AuthRepo {
   final FacebookAuth _facebookAuth = FacebookAuth.instance;
 
   AuthRepo({required this.authApiService});
-  Future<void> initializeGoogleSignIn() async {
-    try {
-      log("===== STARTING GOOGLE SIGN-IN INITIALIZATION =====");
-      log(
-        "serverClientId: 1052875170088-d7agsku7ldc2btkl1qeuauk9lflrtong.apps.googleusercontent.com",
-      );
 
-      // Try to sign out first to reset state
-      try {
-        await _googleSignIn.signOut();
-        log("Signed out previous session");
-      } catch (e) {
-        log("No previous session to sign out");
-      }
-
-      await _googleSignIn.initialize(
-        serverClientId:
-            '1052875170088-d7agsku7ldc2btkl1qeuauk9lflrtong.apps.googleusercontent.com',
-      );
-
-      log("===== GOOGLE SIGN-IN INITIALIZED SUCCESSFULLY =====");
-    } catch (e) {
-      log("===== GOOGLE SIGN-IN INITIALIZATION FAILED =====");
-      log("Error type: ${e.runtimeType}");
-      log("Error message: $e");
-      rethrow;
-    }
-  }
 
   Future<ApiResult<SignUpResponse>> signUp({
     required SignUpRequestBody signUpRequestBody,
@@ -108,10 +80,7 @@ class AuthRepo {
 
   Future<ApiResult<LoginResponse>> googleLogin() async {
     try {
-      await _googleSignIn.initialize(
-        serverClientId:
-            '1052875170088-d7agsku7ldc2btkl1qeuauk9lflrtong.apps.googleusercontent.com',
-      );
+   
 
       final GoogleSignInAccount googleUser = await _googleSignIn.authenticate();
 
