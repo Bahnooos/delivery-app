@@ -1,3 +1,4 @@
+import 'package:delivery_app/core/error/failure.dart';
 import 'package:delivery_app/core/networking/api_result.dart';
 import 'package:delivery_app/core/networking/auth/token_storage.dart';
 import 'package:delivery_app/features/auth/data/models/verify_email_request_body.dart';
@@ -25,7 +26,7 @@ class VerificationCubit extends Cubit<VerificationStates> {
     response.when(
       success: (data) async {
         if (data.accessToken == null || data.refreshToken == null) {
-          emit(VerificationErrorState('Invalid Authentication response'));
+          emit(VerificationErrorState(failure: Failure(message: 'Invalid Authentication response')));
           return;
         }
         await tokenStorage.saveTokens(
@@ -35,7 +36,7 @@ class VerificationCubit extends Cubit<VerificationStates> {
 
         emit(VerificationSuccessState(data: data));
       },
-      failure: (error) => emit(VerificationErrorState(error)),
+      failure: (error) => emit(VerificationErrorState(failure: error)),
     );
   }
 }

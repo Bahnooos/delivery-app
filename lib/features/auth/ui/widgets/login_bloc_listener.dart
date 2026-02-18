@@ -30,8 +30,8 @@ class LoginBlocListener extends StatelessWidget {
           case LoginSuccess():
             context.pop();
             context.pushNamed(Routes.notificationScreen);
-          case LoginError(error: final error):
-            setupErrorState(context, error);
+          case LoginError(failure: final error):
+            setupErrorState(context, error.message);
 
         
         }
@@ -40,13 +40,13 @@ class LoginBlocListener extends StatelessWidget {
     );
   }
 
-  void setupErrorState(BuildContext context, String error) {
+  void setupErrorState(BuildContext context, String? error) {
     context.pop();
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
         icon: const Icon(Icons.error, color: Colors.red, size: 32),
-        content: Text(error, style: context.font16TextDarkRegular),
+        content: Text(error??'', style: context.font16TextDarkRegular),
         actions: [
           TextButton(
             onPressed: () {

@@ -1,4 +1,5 @@
 
+import 'package:delivery_app/core/error/failure.dart';
 import 'package:delivery_app/features/auth/data/models/login_response.dart';
 
 sealed class LoginState {}
@@ -13,6 +14,6 @@ class LoginSuccess extends LoginState {
 }
 
 class LoginError extends LoginState {
-  final String error;
-  LoginError({required this.error});
+  final Failure failure;
+  LoginError({required this.failure});
 }

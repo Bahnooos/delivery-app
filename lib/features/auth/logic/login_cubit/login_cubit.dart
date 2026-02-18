@@ -1,3 +1,4 @@
+import 'package:delivery_app/core/error/failure.dart';
 import 'package:delivery_app/core/networking/api_result.dart';
 import 'package:delivery_app/core/networking/auth/token_storage.dart';
 import 'package:delivery_app/features/auth/data/models/login_request_body.dart';
@@ -25,7 +26,7 @@ class LoginCubit extends Cubit<LoginState> {
     );
     response.when(
       success: (data) => _handleSuccess(data: data),
-      failure: (error) => emit(LoginError(error: error)),
+      failure: (error) => emit(LoginError(failure: error)),
     );
   }
 
@@ -34,7 +35,7 @@ class LoginCubit extends Cubit<LoginState> {
     final response = await authRepo.facebookLogin();
     response.when(
       success: (data) => _handleSuccess(data: data),
-      failure: (error) => emit(LoginError(error: error)),
+      failure: (error) => emit(LoginError(failure: error)),
     );
   }
   
@@ -43,13 +44,13 @@ class LoginCubit extends Cubit<LoginState> {
     final response = await authRepo.googleLogin();
     response.when(
       success: (data) => _handleSuccess(data: data),
-      failure: (error) => emit(LoginError(error: error)),
+      failure: (error) => emit(LoginError(failure: error)),
     );
   }
 
   Future<void> _handleSuccess({required LoginResponse data}) async {
     if (data.accessToken == null || data.refreshToken == null) {
-      emit(LoginError(error: 'Invalid Authentication response'));
+      emit(LoginError(failure: Failure(message: 'Invalid Authentication response')));
       return;
     }
     await tokenStorage.saveTokens(

@@ -29,7 +29,7 @@ class SignUpCubit extends Cubit<SignUpState> {
     );
     respose.when(
       success: (userData) => emit(SignUpSuccess(signUpResponse: userData)),
-      failure: (error) => emit(SignUpError(error: error)),
+      failure: (error) => emit(SignUpError(failure: error)),
     );
   }
 

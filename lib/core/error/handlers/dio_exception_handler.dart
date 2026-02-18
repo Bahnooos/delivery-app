@@ -1,4 +1,6 @@
+import 'package:delivery_app/core/error/api_error_model.dart';
 import 'package:delivery_app/core/error/exception_handler.dart';
+import 'package:delivery_app/core/error/failure.dart';
 import 'package:dio/dio.dart';
 
 import '../../helpers/app_assets.dart';
@@ -7,7 +9,23 @@ class DioExceptionHandler implements ExceptionHandler {
   final bool isArabic = false;
 
   @override
-  String getIconPath(Exception exception) {
+  Failure handle(Exception exception) {
+    final dioException = exception as DioException;
+    final icon = _getIconPath(dioException);
+    final message = _getMessage(dioException);
+    ApiErrorModel? apiErrorModel;
+    if (dioException.response?.data != null &&
+        dioException.response?.data is Map<String, dynamic>) {
+      apiErrorModel = ApiErrorModel.fromJson(dioException.response?.data);
+    }
+
+    final finalMessage = apiErrorModel?.errors?.isNotEmpty == true
+        ? apiErrorModel?.getAllErrorsMessages()
+        : message;
+    return Failure(icon: icon, message: finalMessage, apiErrorModel: apiErrorModel);
+  }
+
+  String _getIconPath(Exception exception) {
     if (exception is! DioException) {
       return 'assets/images/errors/error.png';
     }
@@ -36,13 +54,11 @@ class DioExceptionHandler implements ExceptionHandler {
       case DioExceptionType.cancel:
         return AppAssets.error;
       case DioExceptionType.unknown:
-      default:
-        return AppAssets.error;
+      return AppAssets.error;
     }
   }
 
-  @override
-  String getMessage(Exception exception) {
+  String _getMessage(Exception exception) {
     if (exception is! DioException) {
       return isArabic ? 'حدث خطأ غير متوقع' : 'An unexpected error occurred';
     }
@@ -74,8 +90,7 @@ class DioExceptionHandler implements ExceptionHandler {
         return isArabic ? 'تم إلغاء الطلب' : 'Request was cancelled';
 
       case DioExceptionType.unknown:
-      default:
-        return isArabic
+      return isArabic
             ? 'حدث خطأ غير متوقع.'
             : 'An unexpected error occurred.';
     }

@@ -27,11 +27,11 @@ class VerificationBlocListener extends StatelessWidget {
             );
             context.pushNamed(Routes.notificationScreen);
             break;
-          case VerificationErrorState(message: final errorMessage):
+          case VerificationErrorState(failure: final errorMessage):
             context.pop();
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
-                content: Text(errorMessage),
+                content: Text(errorMessage.message??''),
                 backgroundColor: Colors.red,
               ),
             );

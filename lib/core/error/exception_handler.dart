@@ -1,7 +1,6 @@
-abstract class ExceptionHandler {
-  /// Returns a user-friendly message for the given exception.
-  String getMessage(Exception exception);
+import 'package:delivery_app/core/error/failure.dart';
 
-  /// Returns the path to an icon representing the given exception.
-  String getIconPath(Exception exception);
+abstract class ExceptionHandler {
+  /// Returns a user-friendly message && Icon && Errors if Found for the given exception.
+  Failure handle(Exception exception);
 }

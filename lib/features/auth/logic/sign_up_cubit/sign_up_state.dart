@@ -1,3 +1,4 @@
+import 'package:delivery_app/core/error/failure.dart';
 import 'package:delivery_app/features/auth/data/models/sign_up_response.dart';
 
 sealed class SignUpState {}
@@ -12,6 +13,6 @@ class SignUpSuccess extends SignUpState {
 }
 
 class SignUpError extends SignUpState {
-  final String error;
-  SignUpError({required this.error});
+  final Failure failure;
+  SignUpError({required this.failure});
 }

@@ -33,8 +33,8 @@ class SignUpBlocListener extends StatelessWidget {
             showSuccessDialog(context);
             final email = context.read<SignUpCubit>().emailController.text;
             context.pushNamed(Routes.verificationScreen, argument: email);
-          case SignUpError(error: final error):
-            setupErrorState(context, error);
+          case SignUpError(failure: final error):
+            setupErrorState(context, error.message);
 
             break;
         }
@@ -74,13 +74,13 @@ class SignUpBlocListener extends StatelessWidget {
     );
   }
 
-  void setupErrorState(BuildContext context, String error) {
+  void setupErrorState(BuildContext context, String? error) {
     context.pop();
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
         icon: const Icon(Icons.error, color: Colors.red, size: 32),
-        content: Text(error, style: context.font16TextDarkRegular),
+        content: Text(error??'', style: context.font16TextDarkRegular),
         actions: [
           TextButton(
             onPressed: () {
