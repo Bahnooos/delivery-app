@@ -17,3 +17,14 @@ class VerificationErrorState extends VerificationStates {
 
   VerificationErrorState({required this.failure});
 }
+class ResendVerificationSuccessState extends VerificationStates {
+  final String? message;
+
+  ResendVerificationSuccessState({this.message});
+}
+
+class ResendVerificationErrorState extends VerificationStates {
+  final Failure failure;
+
+  ResendVerificationErrorState({required this.failure});
+}

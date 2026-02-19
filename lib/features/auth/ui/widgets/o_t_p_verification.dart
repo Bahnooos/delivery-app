@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:delivery_app/core/theme/app_text_styles.dart';
 import 'package:delivery_app/features/auth/logic/verify_cubit/verification_cubit.dart';
 import 'package:delivery_app/features/auth/ui/widgets/custom_elevated_button.dart';
@@ -18,6 +20,9 @@ class OTPVerification extends StatefulWidget {
 
 class _OTPVerificationState extends State<OTPVerification> {
   late final TextEditingController pinController;
+  Timer? timer;
+  int seconds = 60;
+  bool isTappedResend = false;
   late final FocusNode focusNode;
   late final GlobalKey<FormState> formKey;
   @override
@@ -31,6 +36,19 @@ class _OTPVerificationState extends State<OTPVerification> {
     formKey = GlobalKey<FormState>();
     pinController = TextEditingController();
     focusNode = FocusNode();
+    _startTimer();
+  }
+
+  void _startTimer() {
+    timer?.cancel();
+    seconds = 60;
+    timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      if (seconds == 0) {
+        timer.cancel();
+      } else {
+        setState(() => seconds--);
+      }
+    });
   }
 
   @override
@@ -40,7 +58,14 @@ class _OTPVerificationState extends State<OTPVerification> {
     }
     pinController.dispose();
     focusNode.dispose();
+    timer?.cancel();
     super.dispose();
+  }
+
+  void _resendCode() {
+    context.read<VerificationCubit>().resendVerificationCode(
+      email: widget.email!,
+    );
   }
 
   @override
@@ -71,7 +96,18 @@ class _OTPVerificationState extends State<OTPVerification> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text('code', style: AppTextStyles.font16TextDarkRegular),
-              Text('resend', style: AppTextStyles.font16TextDarkRegular),
+              InkWell(
+                onTap:  seconds == 0
+                    ? () {
+                        _resendCode();
+                        _startTimer();
+                      }
+                    : null,
+                child: Text(
+                  seconds == 0 ? 'Resend Code' : 'Resend in $seconds s',
+                  style: AppTextStyles.font16TextDarkRegular,
+                ),
+              ),
             ],
           ),
           Directionality(
