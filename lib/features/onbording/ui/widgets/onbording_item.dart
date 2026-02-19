@@ -14,16 +14,25 @@ class OnbordingItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SvgPicture.asset(onbordingPageModel.image ?? '', height: 292.h, width: 240.w),
-        30.verticalSpace,
-        Text(
-          onbordingPageModel.title ?? '',
-          style: context.font22TextPrimarySemiBold?.copyWith(
-            fontSize: 24.sp,
-            fontWeight: FontWeightHelper.extraBold,
-            color: AppColors.textDark,
+        Expanded(
+          flex: 3,
+          child: SvgPicture.asset(
+            onbordingPageModel.image ?? '',
+            height: 292.h,
+            width: 240.w,
           ),
-          textAlign: TextAlign.center,
+        ),
+        30.verticalSpace,
+        Flexible(
+          child: Text(
+            onbordingPageModel.title ?? '',
+            style: context.font22TextPrimarySemiBold?.copyWith(
+              fontSize: 24.sp,
+              fontWeight: FontWeightHelper.extraBold,
+              color: AppColors.textDark,
+            ),
+            textAlign: TextAlign.center,
+          ),
         ),
         12.verticalSpace,
         Text(

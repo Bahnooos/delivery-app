@@ -26,7 +26,11 @@ class VerificationCubit extends Cubit<VerificationStates> {
     response.when(
       success: (data) async {
         if (data.accessToken == null || data.refreshToken == null) {
-          emit(VerificationErrorState(failure: Failure(message: 'Invalid Authentication response')));
+          emit(
+            VerificationErrorState(
+              failure: Failure(message: 'Invalid Authentication response'),
+            ),
+          );
           return;
         }
         await tokenStorage.saveTokens(
@@ -37,6 +41,15 @@ class VerificationCubit extends Cubit<VerificationStates> {
         emit(VerificationSuccessState(data: data));
       },
       failure: (error) => emit(VerificationErrorState(failure: error)),
+    );
+  }
+
+  Future<void> resendVerificationCode({required String email}) async {
+    final response = await authRepo.resendVerificationCode(email: email);
+    response.when(
+      success: (data) =>
+          emit(ResendVerificationSuccessState(message: data.message)),
+      failure: (error) => emit(ResendVerificationErrorState(failure: error)),
     );
   }
 }

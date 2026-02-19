@@ -1,6 +1,8 @@
 import 'package:delivery_app/features/auth/data/models/facebook_login_request_body.dart';
 import 'package:delivery_app/features/auth/data/models/google_login_request_body.dart';
 import 'package:delivery_app/features/auth/data/models/login_response.dart';
+import 'package:delivery_app/features/auth/data/models/resend_v_code_request_body.dart';
+import 'package:delivery_app/features/auth/data/models/resend_v_code_response.dart';
 import 'package:delivery_app/features/auth/data/models/sign_up_request_body.dart';
 import 'package:delivery_app/features/auth/data/models/sign_up_response.dart';
 import 'package:delivery_app/features/auth/data/models/verify_email_request_body.dart';
@@ -36,6 +38,10 @@ abstract class AuthApiService {
   @POST(ApiConstant.googleEndpoint)
   Future<LoginResponse> googleLogin(
     @Body() GoogleLoginRequestBody googleLoginRequestBody,
+  );
+  @POST(ApiConstant.resendVCodeEndpoint)
+  Future<ResendVCodeResponse> resendVerificationCode(
+    @Body() ResendVCodeRequestBody resendVCodeRequestBody,
   );
 
 }

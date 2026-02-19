@@ -22,8 +22,12 @@ class VerificationBlocListener extends StatelessWidget {
               ),
             );
           case VerificationSuccessState():
+            context.pop();
             ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text('Verification successful'), backgroundColor: Colors.green),
+              SnackBar(
+                content: Text('Verification successful'),
+                backgroundColor: Colors.green,
+              ),
             );
             context.pushNamed(Routes.notificationScreen);
             break;
@@ -31,12 +35,31 @@ class VerificationBlocListener extends StatelessWidget {
             context.pop();
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
-                content: Text(errorMessage.message??''),
+                content: Text(errorMessage.message ?? ''),
                 backgroundColor: Colors.red,
               ),
             );
             break;
 
+          case ResendVerificationSuccessState(message: final successMessage):
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(
+                  successMessage ?? 'Verification code resent successfully',
+                ),
+                backgroundColor: Colors.green,
+              ),
+            );
+            break;
+
+          case ResendVerificationErrorState(failure: final resendErrorMessage):
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(resendErrorMessage.message ?? ''),
+                backgroundColor: Colors.red,
+              ),
+            );
+            break;
           default:
         }
       },
