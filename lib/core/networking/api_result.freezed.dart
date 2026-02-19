@@ -55,11 +55,11 @@ extension ApiResultPatterns<T> on ApiResult<T> {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( Success<T> value)?  success,TResult Function( Failure<T> value)?  failure,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( Success<T> value)?  success,TResult Function( FailureResult<T> value)?  failure,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case Success() when success != null:
-return success(_that);case Failure() when failure != null:
+return success(_that);case FailureResult() when failure != null:
 return failure(_that);case _:
   return orElse();
 
@@ -78,11 +78,11 @@ return failure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( Success<T> value)  success,required TResult Function( Failure<T> value)  failure,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( Success<T> value)  success,required TResult Function( FailureResult<T> value)  failure,}){
 final _that = this;
 switch (_that) {
 case Success():
-return success(_that);case Failure():
+return success(_that);case FailureResult():
 return failure(_that);case _:
   throw StateError('Unexpected subclass');
 
@@ -100,11 +100,11 @@ return failure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( Success<T> value)?  success,TResult? Function( Failure<T> value)?  failure,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( Success<T> value)?  success,TResult? Function( FailureResult<T> value)?  failure,}){
 final _that = this;
 switch (_that) {
 case Success() when success != null:
-return success(_that);case Failure() when failure != null:
+return success(_that);case FailureResult() when failure != null:
 return failure(_that);case _:
   return null;
 
@@ -122,11 +122,11 @@ return failure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( T data)?  success,TResult Function( String error)?  failure,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( T data)?  success,TResult Function( Failure failure)?  failure,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case Success() when success != null:
-return success(_that.data);case Failure() when failure != null:
-return failure(_that.error);case _:
+return success(_that.data);case FailureResult() when failure != null:
+return failure(_that.failure);case _:
   return orElse();
 
 }
@@ -144,11 +144,11 @@ return failure(_that.error);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( T data)  success,required TResult Function( String error)  failure,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( T data)  success,required TResult Function( Failure failure)  failure,}) {final _that = this;
 switch (_that) {
 case Success():
-return success(_that.data);case Failure():
-return failure(_that.error);case _:
+return success(_that.data);case FailureResult():
+return failure(_that.failure);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -165,11 +165,11 @@ return failure(_that.error);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( T data)?  success,TResult? Function( String error)?  failure,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( T data)?  success,TResult? Function( Failure failure)?  failure,}) {final _that = this;
 switch (_that) {
 case Success() when success != null:
-return success(_that.data);case Failure() when failure != null:
-return failure(_that.error);case _:
+return success(_that.data);case FailureResult() when failure != null:
+return failure(_that.failure);case _:
   return null;
 
 }
@@ -246,43 +246,43 @@ as T,
 /// @nodoc
 
 
-class Failure<T> implements ApiResult<T> {
-  const Failure(this.error);
+class FailureResult<T> implements ApiResult<T> {
+  const FailureResult(this.failure);
   
 
- final  String error;
+ final  Failure failure;
 
 /// Create a copy of ApiResult
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-$FailureCopyWith<T, Failure<T>> get copyWith => _$FailureCopyWithImpl<T, Failure<T>>(this, _$identity);
+$FailureResultCopyWith<T, FailureResult<T>> get copyWith => _$FailureResultCopyWithImpl<T, FailureResult<T>>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Failure<T>&&(identical(other.error, error) || other.error == error));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is FailureResult<T>&&(identical(other.failure, failure) || other.failure == failure));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,error);
+int get hashCode => Object.hash(runtimeType,failure);
 
 @override
 String toString() {
-  return 'ApiResult<$T>.failure(error: $error)';
+  return 'ApiResult<$T>.failure(failure: $failure)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class $FailureCopyWith<T,$Res> implements $ApiResultCopyWith<T, $Res> {
-  factory $FailureCopyWith(Failure<T> value, $Res Function(Failure<T>) _then) = _$FailureCopyWithImpl;
+abstract mixin class $FailureResultCopyWith<T,$Res> implements $ApiResultCopyWith<T, $Res> {
+  factory $FailureResultCopyWith(FailureResult<T> value, $Res Function(FailureResult<T>) _then) = _$FailureResultCopyWithImpl;
 @useResult
 $Res call({
- String error
+ Failure failure
 });
 
 
@@ -290,19 +290,19 @@ $Res call({
 
 }
 /// @nodoc
-class _$FailureCopyWithImpl<T,$Res>
-    implements $FailureCopyWith<T, $Res> {
-  _$FailureCopyWithImpl(this._self, this._then);
+class _$FailureResultCopyWithImpl<T,$Res>
+    implements $FailureResultCopyWith<T, $Res> {
+  _$FailureResultCopyWithImpl(this._self, this._then);
 
-  final Failure<T> _self;
-  final $Res Function(Failure<T>) _then;
+  final FailureResult<T> _self;
+  final $Res Function(FailureResult<T>) _then;
 
 /// Create a copy of ApiResult
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? error = null,}) {
-  return _then(Failure<T>(
-null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
-as String,
+@pragma('vm:prefer-inline') $Res call({Object? failure = null,}) {
+  return _then(FailureResult<T>(
+null == failure ? _self.failure : failure // ignore: cast_nullable_to_non_nullable
+as Failure,
   ));
 }
 

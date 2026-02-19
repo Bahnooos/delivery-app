@@ -1,5 +1,6 @@
 
 import 'package:delivery_app/core/error/exception_manager.dart';
+import 'package:delivery_app/core/error/failure.dart';
 import 'package:delivery_app/core/networking/api_result.dart';
 import 'package:delivery_app/features/auth/data/apis/auth_api_service.dart';
 import 'package:delivery_app/features/auth/data/models/facebook_login_request_body.dart';
@@ -28,7 +29,7 @@ class AuthRepo {
       final response = await authApiService.signUp(signUpRequestBody);
       return ApiResult.success(response);
     } catch (error) {
-      return ApiResult.failure(ExceptionManager.getMessage(error as Exception));
+      return ApiResult.failure(ExceptionManager.handle(error as Exception));
     }
   }
 
@@ -39,7 +40,7 @@ class AuthRepo {
       final response = await authApiService.login(loginRequestBody);
       return ApiResult.success(response);
     } catch (error) {
-      return ApiResult.failure(ExceptionManager.getMessage(error as Exception));
+      return ApiResult.failure(ExceptionManager.handle(error as Exception));
     }
   }
 
@@ -49,8 +50,8 @@ class AuthRepo {
     try {
       final response = await authApiService.verifyEmail(verifyEmailRequestBody);
       return ApiResult.success(response);
-    } catch (e) {
-      return ApiResult.failure(ExceptionManager.getMessage(e as Exception));
+    } catch (error) {
+      return ApiResult.failure(ExceptionManager.handle(error as Exception));
     }
   }
 
@@ -58,11 +59,11 @@ class AuthRepo {
     try {
       final result = await _facebookAuth.login();
       if (result.status == LoginStatus.cancelled) {
-        return ApiResult.failure("Login cancelled");
+        return ApiResult.failure(Failure(message: "Login cancelled"));
       }
 
       if (result.status != LoginStatus.success) {
-        return ApiResult.failure("Facebook login failed");
+        return ApiResult.failure(Failure(message: "Facebook login failed"));
       }
 
       final response = await authApiService.facebookLogin(
@@ -71,7 +72,7 @@ class AuthRepo {
       return ApiResult.success(response);
     } catch (e) {
       return ApiResult.failure(
-        ExceptionManager.getMessage(
+        ExceptionManager.handle(
           e is Exception ? e : Exception(e.toString()),
         ),
       );
@@ -86,7 +87,7 @@ class AuthRepo {
 
       final googleAuth = googleUser.authentication;
       if (googleAuth.idToken == null) {
-        return ApiResult.failure("Failed to get Google authentication token");
+        return ApiResult.failure(Failure(message: "Failed to get Google authentication token"));
       }
 
       final response = await authApiService.googleLogin(
@@ -96,14 +97,14 @@ class AuthRepo {
       return ApiResult.success(response);
     } on GoogleSignInException catch (e) {
       if (e.code == GoogleSignInExceptionCode.canceled) {
-        return ApiResult.failure("Google Sign-In was cancelled");
+        return ApiResult.failure(Failure(message: "Google Sign-In was cancelled"));
       }
       return ApiResult.failure(
-        "Google Sign-In failed: ${e.code} - Check your configuration",
+       Failure(message: "Google Sign-In failed: ${e.code} - Check your configuration") ,
       );
     } catch (e) {
       return ApiResult.failure(
-        ExceptionManager.getMessage(
+        ExceptionManager.handle(
           e is Exception ? e : Exception(e.toString()),
         ),
       );

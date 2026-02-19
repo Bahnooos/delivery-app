@@ -1,3 +1,5 @@
+import 'package:delivery_app/core/error/failure.dart';
+
 sealed class VerificationStates {}
 
 class VerificationInitialState extends VerificationStates {}
@@ -11,7 +13,7 @@ class VerificationSuccessState<T> extends VerificationStates {
 }
 
 class VerificationErrorState extends VerificationStates {
-  final String message;
+  final Failure failure;
 
-  VerificationErrorState(this.message);
+  VerificationErrorState({required this.failure});
 }
