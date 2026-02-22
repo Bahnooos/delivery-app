@@ -28,7 +28,7 @@ class DeliveryApp extends StatelessWidget {
           initialRoute: Routes.splashScreen,
           onGenerateRoute: appRouter.generateRoute,
 
-          /// 👇 هنا الحل
+        
           builder: (context, child) {
             return BlocListener<AuthCubit, AuthState>(
               listener: (context, state) {
