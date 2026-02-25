@@ -5,6 +5,7 @@ import 'package:delivery_app/core/networking/dio_factory.dart';
 import 'package:delivery_app/features/auth/data/apis/auth_api_service.dart';
 import 'package:delivery_app/features/auth/data/repos/auth_repo.dart';
 import 'package:delivery_app/features/auth/logic/auth_cubit/auth_cubit.dart';
+import 'package:delivery_app/features/auth/logic/forget_password_cubit/forget_and_reset_password_cubit.dart';
 import 'package:delivery_app/features/auth/logic/login_cubit/login_cubit.dart';
 import 'package:delivery_app/features/auth/logic/sign_up_cubit/sign_up_cubit.dart';
 import 'package:delivery_app/features/auth/logic/verify_cubit/verification_cubit.dart';
@@ -46,5 +47,8 @@ Future<void> setupGetIt() async {
   getIt.registerFactory<LoginCubit>(() => LoginCubit(getIt(), getIt()));
   getIt.registerLazySingleton<AuthCubit>(
     () => AuthCubit(authEventBus: getIt(), tokenStorage: getIt()),
+  );
+  getIt.registerLazySingleton<ForgetAndResetPasswordCubit>(
+    () => ForgetAndResetPasswordCubit(authRepo: getIt()),
   );
 }
