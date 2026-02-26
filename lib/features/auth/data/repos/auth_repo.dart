@@ -3,11 +3,14 @@ import 'package:delivery_app/core/error/failure.dart';
 import 'package:delivery_app/core/networking/api_result.dart';
 import 'package:delivery_app/features/auth/data/apis/auth_api_service.dart';
 import 'package:delivery_app/features/auth/data/models/facebook_login_request_body.dart';
+import 'package:delivery_app/features/auth/data/models/forget_and_reset_password_response.dart';
+import 'package:delivery_app/features/auth/data/models/forget_password_request_body.dart';
 import 'package:delivery_app/features/auth/data/models/google_login_request_body.dart';
 import 'package:delivery_app/features/auth/data/models/login_request_body.dart';
 import 'package:delivery_app/features/auth/data/models/login_response.dart';
 import 'package:delivery_app/features/auth/data/models/resend_v_code_request_body.dart';
 import 'package:delivery_app/features/auth/data/models/resend_v_code_response.dart';
+import 'package:delivery_app/features/auth/data/models/reset_password_request_body.dart';
 import 'package:delivery_app/features/auth/data/models/sign_up_request_body.dart';
 import 'package:delivery_app/features/auth/data/models/sign_up_response.dart';
 import 'package:delivery_app/features/auth/data/models/verify_email_request_body.dart';
@@ -118,6 +121,38 @@ class AuthRepo {
     try {
       final response = await authApiService.resendVerificationCode(
         ResendVCodeRequestBody(email: email),
+      );
+      return ApiResult.success(response);
+    } catch (error) {
+      return ApiResult.failure(ExceptionManager.handle(error as Exception));
+    }
+  }
+
+  Future<ApiResult<ForgetAndResetPasswordResponse>> forgetPassword({
+    required String email,
+  }) async {
+    try {
+      final response = await authApiService.forgetPassword(
+        ForgetPasswordRequestBody(email: email),
+      );
+      return ApiResult.success(response);
+    } catch (error) {
+      return ApiResult.failure(ExceptionManager.handle(error as Exception));
+    }
+  }
+
+  Future<ApiResult<ForgetAndResetPasswordResponse>> resetPassword({
+    required String email,
+    required String newPassword,
+    required String otp,
+  }) async {
+    try {
+      final response = await authApiService.resetPassword(
+        ResetPasswordRequestBody(
+          email: email,
+          newPassword: newPassword,
+          otp: otp,
+        ),
       );
       return ApiResult.success(response);
     } catch (error) {

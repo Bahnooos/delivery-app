@@ -1,8 +1,10 @@
 import 'package:delivery_app/core/di/dependency_injection.dart';
+import 'package:delivery_app/features/auth/logic/forget_password_cubit/forget_and_reset_password_cubit.dart';
 import 'package:delivery_app/features/auth/logic/login_cubit/login_cubit.dart';
 import 'package:delivery_app/features/auth/logic/sign_up_cubit/sign_up_cubit.dart';
 import 'package:delivery_app/features/auth/logic/verify_cubit/verification_cubit.dart';
 import 'package:delivery_app/features/auth/ui/login_screen.dart';
+import 'package:delivery_app/features/auth/ui/reset_password_screen.dart';
 import 'package:delivery_app/features/notification/ui/notification_screen.dart';
 import 'package:delivery_app/features/splash/splash_screen.dart';
 import 'package:delivery_app/features/onbording/ui/onbording_screen.dart';
@@ -38,7 +40,7 @@ class AppRouter {
           ),
         );
       case Routes.verificationScreen:
-      final email = args as String?;
+        final email = args as String?;
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
             create: (context) => getIt<VerificationCubit>(),
@@ -46,7 +48,20 @@ class AppRouter {
           ),
         );
       case Routes.forgetPasswordScreen:
-        return MaterialPageRoute(builder: (_) => const ForgetPasswordScreen());
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => getIt<ForgetAndResetPasswordCubit>(),
+            child: const ForgetPasswordScreen(),
+          ),
+        );
+      case Routes.resetPasswordScreen:
+        final email = args as String?;
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => getIt<ForgetAndResetPasswordCubit>(),
+            child: ResetPasswordScreen(email: email),
+          ),
+        );
       case Routes.notificationScreen:
         return MaterialPageRoute(builder: (_) => const NotificationScreen());
       case Routes.splashScreen:
