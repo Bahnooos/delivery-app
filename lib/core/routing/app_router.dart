@@ -5,6 +5,7 @@ import 'package:delivery_app/features/auth/logic/sign_up_cubit/sign_up_cubit.dar
 import 'package:delivery_app/features/auth/logic/verify_cubit/verification_cubit.dart';
 import 'package:delivery_app/features/auth/ui/login_screen.dart';
 import 'package:delivery_app/features/auth/ui/reset_password_screen.dart';
+import 'package:delivery_app/features/my%20food/ui/my_food_screen.dart';
 import 'package:delivery_app/features/notification/ui/notification_screen.dart';
 import 'package:delivery_app/features/splash/splash_screen.dart';
 import 'package:delivery_app/features/onbording/ui/onbording_screen.dart';
@@ -68,6 +69,8 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const SplashScreen());
       case Routes.onbordingScreen:
         return MaterialPageRoute(builder: (_) => const OnbordingScreen());
+      case Routes.myFoodScreen:
+        return MaterialPageRoute(builder: (_) => const MyFoodScreen());
 
       default:
         return MaterialPageRoute(
