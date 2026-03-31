@@ -55,7 +55,7 @@ class AppRouter {
           ),
         );
       case Routes.resetPasswordScreen:
-        final email = args as String?;
+        final email = args as String;
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
             create: (context) => getIt<ForgetAndResetPasswordCubit>(),
