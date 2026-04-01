@@ -25,7 +25,7 @@ class DeliveryApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           theme: AppTheme.light,
           themeMode: ThemeMode.system,
-          initialRoute: Routes.splashScreen,
+          initialRoute: Routes.myFoodScreen,
           onGenerateRoute: appRouter.generateRoute,
 
         
