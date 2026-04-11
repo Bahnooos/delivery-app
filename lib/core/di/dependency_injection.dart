@@ -9,6 +9,22 @@ import 'package:delivery_app/features/auth/logic/forget_password_cubit/forget_an
 import 'package:delivery_app/features/auth/logic/login_cubit/login_cubit.dart';
 import 'package:delivery_app/features/auth/logic/sign_up_cubit/sign_up_cubit.dart';
 import 'package:delivery_app/features/auth/logic/verify_cubit/verification_cubit.dart';
+import 'package:delivery_app/features/my%20food/data/apis/meals_api_service.dart'
+    as meals_api;
+import 'package:delivery_app/features/my%20food/data/repos/meals_repo.dart'
+    as meals_repo;
+import 'package:delivery_app/features/my%20food/domain/repository/meals_repository.dart'
+    as meals_repository;
+import 'package:delivery_app/features/my%20food/domain/usecases/add_to_cart_use_case.dart'
+    as add_to_cart_use_case;
+import 'package:delivery_app/features/my%20food/domain/usecases/get_meal_by_id_use_case.dart'
+    as get_meal_by_id_use_case;
+import 'package:delivery_app/features/my%20food/domain/usecases/get_meals_use_case.dart'
+    as get_meals_use_case;
+import 'package:delivery_app/features/my%20food/logic/meal_detail_cubit/meal_detail_cubit.dart'
+    as meal_detail_cubit;
+import 'package:delivery_app/features/my%20food/logic/meals_cubit/meals_cubit.dart'
+    as meals_cubit;
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 
@@ -42,7 +58,7 @@ Future<void> setupGetIt() async {
   );
   getIt.registerFactory<SignUpCubit>(() => SignUpCubit(getIt()));
   getIt.registerFactory<VerificationCubit>(
-    () => VerificationCubit(authRepo: getIt(),tokenStorage: getIt()),
+    () => VerificationCubit(authRepo: getIt(), tokenStorage: getIt()),
   );
   getIt.registerFactory<LoginCubit>(() => LoginCubit(getIt(), getIt()));
   getIt.registerLazySingleton<AuthCubit>(
@@ -50,5 +66,31 @@ Future<void> setupGetIt() async {
   );
   getIt.registerLazySingleton<ForgetAndResetPasswordCubit>(
     () => ForgetAndResetPasswordCubit(authRepo: getIt()),
+  );
+
+  // Features - Meals
+  getIt.registerLazySingleton<meals_api.MealsApiService>(
+    () => meals_api.MealsApiService(getIt()),
+  );
+  getIt.registerLazySingleton<meals_repository.MealsRepository>(
+    () => meals_repo.MealsRepoImpl(mealsApiService: getIt()),
+  );
+  getIt.registerLazySingleton<get_meals_use_case.GetMealsUseCase>(
+    () => get_meals_use_case.GetMealsUseCase(getIt()),
+  );
+  getIt.registerLazySingleton<get_meal_by_id_use_case.GetMealByIdUseCase>(
+    () => get_meal_by_id_use_case.GetMealByIdUseCase(getIt()),
+  );
+  getIt.registerLazySingleton<add_to_cart_use_case.AddToCartUseCase>(
+    () => add_to_cart_use_case.AddToCartUseCase(getIt()),
+  );
+  getIt.registerFactory<meals_cubit.MealsCubit>(
+    () => meals_cubit.MealsCubit(getIt()),
+  );
+  getIt.registerFactory<meal_detail_cubit.MealDetailCubit>(
+    () => meal_detail_cubit.MealDetailCubit(
+      getMealByIdUseCase: getIt(),
+      addToCartUseCase: getIt(),
+    ),
   );
 }

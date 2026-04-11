@@ -5,10 +5,16 @@ import 'package:delivery_app/features/auth/logic/sign_up_cubit/sign_up_cubit.dar
 import 'package:delivery_app/features/auth/logic/verify_cubit/verification_cubit.dart';
 import 'package:delivery_app/features/auth/ui/login_screen.dart';
 import 'package:delivery_app/features/auth/ui/reset_password_screen.dart';
-import 'package:delivery_app/features/my%20food/ui/my_food_screen.dart';
+import 'package:delivery_app/features/my%20food/domain/entities/meal_entity.dart';
+import 'package:delivery_app/features/my%20food/logic/meal_detail_cubit/meal_detail_cubit.dart';
+import 'package:delivery_app/features/my%20food/logic/meals_cubit/meals_cubit.dart';
+import 'package:delivery_app/features/my%20food/ui/meal_detail_screen.dart';
+import 'package:delivery_app/features/my%20food/ui/my_food_screen.dart'
+    as my_food;
+import 'package:delivery_app/features/my%20food/ui/my_meals_screen.dart';
 import 'package:delivery_app/features/notification/ui/notification_screen.dart';
-import 'package:delivery_app/features/splash/splash_screen.dart';
 import 'package:delivery_app/features/onbording/ui/onbording_screen.dart';
+import 'package:delivery_app/features/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -70,7 +76,22 @@ class AppRouter {
       case Routes.onbordingScreen:
         return MaterialPageRoute(builder: (_) => const OnbordingScreen());
       case Routes.myFoodScreen:
-        return MaterialPageRoute(builder: (_) => const MyFoodScreen());
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => getIt<MealsCubit>()..emitMealsStates(),
+            child: const my_food.MyFoodScreen(),
+          ),
+        );
+      case Routes.myMealsScreen:
+        return MaterialPageRoute(builder: (_) => const MyMealsScreen());
+      case Routes.mealDetailScreen:
+        final meal = settings.arguments as MealEntity;
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => getIt<MealDetailCubit>()..loadMeal(meal: meal),
+            child: const MealDetailScreen(),
+          ),
+        );
 
       default:
         return MaterialPageRoute(

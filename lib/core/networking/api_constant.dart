@@ -10,4 +10,10 @@ class ApiConstant {
   static const String resetPasswordEndpoint = '/Authentication/reset-password';
   static const String forgotPasswordEndpoint =
       '/Authentication/forgot-password';
+
+  /// Meals
+  static const String mealsEndpoint = '/Meals';
+
+  /// Cart
+  static const String addToCartEndpoint = '/Cart/add';
 }
