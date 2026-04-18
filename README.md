@@ -1,64 +1,104 @@
-# Screens Documentation
+# Delivery App Documentation
 
-## Splash Screen
-- Description: This screen serves as the initial interface of the app with branding and logo.
-- Features: Transition to the main application after a short delay.
+## Table of Contents
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Installation](#installation)
+- [Project Structure](#project-structure)
+- [Screens](#screens)
+  - [Authentication Screens](#authentication-screens)
+  - [Main Application Screens](#main-application-screens)
+- [Getting Started](#getting-started)
+- [Configuration](#configuration)
+- [Contributing](#contributing)
+- [License](#license)
 
-## Authentication Screens
-### Login
-- Description: User can log into the application.
-- Features:
-    - Email and password fields.
-    - ‘Forgot Password’ link.
-    - Redirect to home after successful login.
+## Features
+- User authentication with secure login and signup.
+- Delivery tracking in real-time.
+- Order history management.
+- User profile management.
 
-### Signup
-- Description: New users can create an account.
-- Features:
-    - Name, email, and password fields.
-    - Terms and Conditions checkbox.
-    - Redirect to login after successful signup.
+## Tech Stack
+- React Native
+- Node.js
+- MongoDB
+- Express.js
 
-### Password Reset
-- Description: Users can reset their forgotten password.
-- Features:
-    - Email input for password reset link.
-    - Confirmation message after link sent.
+## Installation
+1. Clone the repository.
+2. Run `npm install` to install dependencies.
+3. Set up environment variables as per the `.env.example` file.
 
-### OTP Verification
-- Description: Users verify their identity through a one-time password.
-- Features:
-    - OTP input field.
-    - Resend OTP option.
+## Project Structure
+```
+/
+├── src/
+│   ├── components/
+│   ├── screens/
+│   ├── navigation/
+│   └── services/
+├── App.js
+└── package.json
+```
 
-## Home Screen
-- Description: The main dashboard accessible after login.
-- Features:
-    - Overview of active orders and notifications.
-    - Navigation to other features of the app.
+## Screens
 
-## Delivery Tracking
-- Description: Users can track their deliveries in real-time.
-- Features:
-    - Map view showing delivery routes.
-    - Estimated time of arrival (ETA).
+### Authentication Screens
+#### Splash Screen
+- **Purpose**: Show the app logo and loading sequence.
+- **Features**: Navigation to Login or Signup based on user state.
+- **Navigation Flow**: Automatically navigates after a short period.
 
-## Order History
-- Description: Users can view past orders.
-- Features:
-    - List of previous orders with details.
+#### Login Screen
+- **Purpose**: Authenticate existing users.
+- **Features**: Input fields for email and password, submit button.
+- **User Flow**: User inputs credentials and navigates to the home screen if successful.
 
-## Profile
-- Description: User's personal information and account settings.
-- Features:
-    - Update personal information.
-    - Change password.
+#### Signup Screen
+- **Purpose**: Register new users.
+- **Features**: Input fields for user details, validate inputs.
+- **User Flow**: User submits details and receives a confirmation email.
 
-## Order Details
-- Description: Details for each individual order.
-- Features:
-    - Itemized list of products.
-    - Delivery status and tracking option.
+#### Password Reset Screen
+- **Purpose**: Allow users to reset their password.
+- **Features**: Input field for email; send OTP.
+- **User Flow**: User enters email and receives reset instructions.
 
-## Navigation Flows
-- Each screen connects logically with appropriate buttons leading to different areas of the app, ensuring smooth user experience.
+#### OTP Verification Screen
+- **Purpose**: Verify OTP for actions like password reset.
+- **Features**: Input field for OTP, submit button.
+- **User Flow**: User enters received OTP to proceed.
+
+### Main Application Screens
+#### Home Screen
+- **Purpose**: Display main options for the user.
+- **Features**: Navigation to Delivery Tracking, Order History, Profile.
+
+#### Delivery Tracking Screen
+- **Purpose**: Show the user's active deliveries.
+- **Features**: Map view, delivery status updates.
+
+#### Order History Screen
+- **Purpose**: Display past orders for the user.
+- **Features**: List of orders, details on click.
+
+#### Profile Screen
+- **Purpose**: Allow users to manage their profile.
+- **Features**: Edit details, change password.
+
+#### Order Details Screen
+- **Purpose**: Show detailed information for a specific order.
+- **Features**: Item details, delivery status, contact support.
+
+## Getting Started
+To get started, follow the installation instructions and run the app using `npm start`.
+
+## Configuration
+Ensure you configure your database connection in the environment variables.
+
+## Contributing
+Feel free to submit issues or create pull requests for enhancements and fixes.
+
+## License
+This project is licensed under the MIT License.
