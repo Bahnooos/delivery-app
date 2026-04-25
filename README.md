@@ -19,28 +19,10 @@
 - Order history management.
 - User profile management.
 
-## Tech Stack
-- React Native
-- Node.js
-- MongoDB
-- Express.js
-
 ## Installation
 1. Clone the repository.
 2. Run `npm install` to install dependencies.
-3. Set up environment variables as per the `.env.example` file.
-
-## Project Structure
-```
-/
-├── src/
-│   ├── components/
-│   ├── screens/
-│   ├── navigation/
-│   └── services/
-├── App.js
-└── package.json
-```
+3. Set up environment variables as per the `.env.example` file.`
 
 ## Screens
 
